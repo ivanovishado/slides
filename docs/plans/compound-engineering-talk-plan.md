@@ -24,7 +24,9 @@ The talk has three conceptual anchors:
 
 The actionable takeaway should be concrete:
 
-> Run one nontrivial feature through a Compound Engineering skill loop: `ce:brainstorm` -> `ce:plan` -> `ce:work` -> `ce:review` -> `ce:compound`. Do not stop at generated code. End with a reusable artifact.
+> Run one nontrivial feature through a Compound Engineering skill loop: `/ce-brainstorm` -> `/ce-plan` -> `/ce-work` -> `/ce-review` -> `/ce-compound`. Do not stop at generated code. End with a reusable artifact.
+
+The slide deck should make clear that the concrete workflow is being referenced through Every's Compound Engineering plugin because it is the easiest practical on-ramp. The broader argument is not plugin-specific: any engineering workflow can compound if it captures learning into durable, retrievable artifacts.
 
 ## Audience and Tone
 
@@ -42,6 +44,10 @@ Use these as conceptual references and optional link targets on the outro slide:
   https://every.to/chain-of-thought/compound-engineering-how-every-codes-with-agents
 - EveryInc compound-engineering-plugin repo  
   https://github.com/EveryInc/compound-engineering-plugin
+- EveryInc compound-engineering-plugin skill documentation  
+  https://github.com/EveryInc/compound-engineering-plugin/blob/main/docs/skills/README.md
+- Every Source Code: "My AI Had Already Fixed the Code Before I Saw It"  
+  https://every.to/source-code/my-ai-had-already-fixed-the-code-before-i-saw-it
 - Berkeley BAIR: "The Shift from Models to Compound AI Systems"  
   https://bair.berkeley.edu/blog/2024/02/18/compound-ai-systems/
 - Tiago Forte / Forte Labs: Building a Second Brain overview  
@@ -255,19 +261,19 @@ Below it, include four supporting ideas: codify decisions, automate checks, pres
 
 **Layout:** Horizontal workflow using command-like skill names:
 
-`ce:brainstorm` -> `ce:plan` -> `ce:work` -> `ce:review` -> `ce:compound`
+`/ce-brainstorm` -> `/ce-plan` -> `/ce-work` -> `/ce-review` -> `/ce-compound`
 
 Under each skill, add one short function:
 
-- **`ce:brainstorm`**: clarify what to build
-- **`ce:plan`**: capture how to build it
-- **`ce:work`**: execute against the plan
-- **`ce:review`**: scale critique and catch gaps
-- **`ce:compound`**: document what the team learned
+- **`/ce-brainstorm`**: clarify what to build
+- **`/ce-plan`**: capture how to build it
+- **`/ce-work`**: execute against the plan
+- **`/ce-review`**: scale critique and catch gaps
+- **`/ce-compound`**: document what the team learned
 
 Add the takeaway line: "Do not stop at generated code. End with a reusable artifact."
 
-**What to say:** This is the part the audience can take home. The specific commands are less important than the shape of the loop: clarify intent, plan with context, execute, review, then reinvest the learning. The final step is what prevents the work from becoming another disposable AI session.
+**What to say:** This is the part the audience can take home. Say explicitly that this workflow comes from Every's Compound Engineering plugin, and that the plugin is useful because it makes the practice easy to try immediately. The specific commands are less important than the shape of the loop: clarify intent, plan with context, execute, review, then reinvest the learning. The final step is what prevents the work from becoming another disposable AI session.
 
 **Image to generate:** A command-line workflow where each command produces an artifact that is deposited into persistent repo memory. The final artifact should visibly feed back into the beginning of the loop.
 
@@ -342,7 +348,7 @@ Plan -> branch/worktree -> implementation -> tests -> adaptation -> result
 - Performance
 - Architecture
 
-**What to say:** Human reviewers are limited by time and attention. Specialized review agents can repeatedly check for classes of problems that humans often miss or defer. The most valuable review findings should feed the learning system.
+**What to say:** Human reviewers are limited by time and attention. Specialized review agents can repeatedly check for classes of problems that humans often miss or defer. The most valuable review findings should feed the learning system. Use Every's "My AI Had Already Fixed the Code Before I Saw It" as a concrete story: the mature outcome is not just an agent writing code, but a system that investigates, fixes, and presents resolved findings before the human review pass.
 
 **Image to generate:** A pull request or diff under multiple inspection lenses, each lens revealing a different class of issue.
 
@@ -352,7 +358,7 @@ Plan -> branch/worktree -> implementation -> tests -> adaptation -> result
 
 **Title:** Compound means reinvest
 
-**Slide goal:** Make the final step of the workflow vivid. The audience should understand that `ce:compound` is where temporary learning becomes reusable knowledge.
+**Slide goal:** Make the final step of the workflow vivid. The audience should understand that `/ce-compound` is where temporary learning becomes reusable knowledge.
 
 **Layout:** Before/after pipeline:
 
@@ -366,7 +372,7 @@ Reusable artifacts should include:
 - solution note
 - workflow improvement
 
-**What to say:** If a bug is fixed but the lesson is not captured, the team bought a one-time fix. If the lesson becomes a test, instruction, or solution doc, the next occurrence is cheaper.
+**What to say:** If a bug is fixed but the lesson is not captured, the team bought a one-time fix. If the lesson becomes a test, instruction, or solution doc, the next occurrence is cheaper. Use the plugin docs' concrete model here: `/ce-compound` writes learnings into `docs/solutions/`, and later `/ce-brainstorm` and `/ce-plan` can use those notes as grounding. Searchable metadata or frontmatter is the small implementation detail that turns a lesson into retrievable system memory.
 
 **Image to generate:** Insights being deposited into a vault or memory store that visibly powers the next engineering task.
 
@@ -513,6 +519,6 @@ The final deck should be successful if:
 - A viewer can connect bus factor to context trapped in people's heads.
 - A viewer understands Second Brain as a bridge, not the main thesis.
 - A viewer understands the investment analogy: learning compounds only when reinvested.
-- A viewer leaves with the concrete workflow: `ce:brainstorm` -> `ce:plan` -> `ce:work` -> `ce:review` -> `ce:compound`.
+- A viewer leaves with the concrete workflow: `/ce-brainstorm` -> `/ce-plan` -> `/ce-work` -> `/ce-review` -> `/ce-compound`.
 - Every slide has one primary idea and does not depend on speaker-only context to make sense.
 - The outro gives the audience links and a clear next action.

@@ -93,7 +93,7 @@ const Footer = () => {
         textTransform: 'uppercase',
       }}
     >
-      <span>AGENT-CONSOLE // 2026</span>
+      <span>AGENT-CONSOLE {'// 2026'}</span>
       <span style={{ color: '#22d3ee' }}>
         {String(current).padStart(2, '0')} / {String(total).padStart(2, '0')}
       </span>
