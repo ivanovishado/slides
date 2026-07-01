@@ -1,0 +1,4 @@
+interface:
+  display_name: "Navigate Open-Slide Pages"
+  short_description: "Navigate open-slide decks by page number"
+  default_prompt: "Use $navigate-open-slide-pages to open an open-slide deck at a specific page number."
