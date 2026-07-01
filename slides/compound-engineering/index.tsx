@@ -4,6 +4,9 @@ import slide1 from './assets/slide1.jpg';
 import slide4 from './assets/slide4.jpg';
 import slide7 from './assets/slide7.jpg';
 import slide17 from './assets/slide17.jpg';
+import busFactor from './assets/bus-factor.png';
+import slidesSite from './assets/slides-site.png';
+import linkedin from './assets/linkedin.png';
 
 export const design: DesignSystem = {
   palette: { bg: '#0a141c', text: '#e6edf3', accent: '#01578C' },
@@ -282,14 +285,13 @@ const SpeakerIntro: Page = () => (
     >
       <img src={ivan} alt="Foto del ponente" style={{ width: 400, height: 400, objectFit: 'cover', borderRadius: 10 }} />
       <div style={{ display: 'flex', flexDirection: 'column', gap: 36 }}>
-        <Eyebrow>El ponente</Eyebrow>
+        <Eyebrow>Ponente</Eyebrow>
         <h2 style={{ fontFamily: SANS, fontSize: 72, fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.015em', margin: 0, color: TEXT }}>
-          Por qué me importa esto
+          Ivan Galaviz
         </h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-          <p style={{ fontSize: 32, lineHeight: 1.5, color: TEXT, margin: 0 }}>Lo que construyo o lidero</p>
-          <p style={{ fontSize: 32, lineHeight: 1.5, color: TEXT, margin: 0 }}>Dónde encajan los agentes de IA en mi trabajo</p>
-          <p style={{ fontSize: 32, lineHeight: 1.5, color: TEXT, margin: 0 }}>Por qué el contexto y la mantenibilidad me importan</p>
+          <p style={{ fontSize: 32, lineHeight: 1.5, color: TEXT, margin: 0 }}>Software Engineer en Netflix</p>
+          <p style={{ fontSize: 32, lineHeight: 1.5, color: TEXT, margin: 0 }}>Me gusta preocuparme por la mantenibilidad del software en este mundo AI-first</p>
         </div>
       </div>
     </div>
@@ -356,7 +358,7 @@ const ContextDebt: Page = () => (
             <p style={{ fontSize: 30, lineHeight: 1.45, color: TEXT, margin: 0 }}>Lo que el usuario quiso decir</p>
           </div>
           <div>
-            <div style={{ fontFamily: MONO, fontSize: 24, color: ACCENT, letterSpacing: 1.4, textTransform: 'uppercase', marginBottom: 8 }}>Restricciones</div>
+            <div style={{ fontFamily: MONO, fontSize: 24, color: ACCENT, letterSpacing: 1.4, textTransform: 'uppercase', marginBottom: 8 }}>Restricciones (Guardrails)</div>
             <p style={{ fontSize: 30, lineHeight: 1.45, color: TEXT, margin: 0 }}>Lo que la solución debía respetar</p>
           </div>
           <div>
@@ -381,14 +383,12 @@ const BusFactor: Page = () => (
         right: 112,
         top: 160,
         display: 'grid',
-        gridTemplateColumns: '420px 1fr',
-        gap: 80,
+        gridTemplateColumns: '660px 1fr',
+        gap: 72,
         alignItems: 'center',
       }}
     >
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <span style={{ fontFamily: SANS, fontSize: 380, fontWeight: 900, lineHeight: 1, color: PRIMARY, letterSpacing: '-0.04em' }}>1</span>
-      </div>
+      <img src={busFactor} alt="Ilustración del bus factor: conocimiento concentrado en una persona" style={{ width: 660, height: 660, objectFit: 'contain', borderRadius: 10 }} />
       <div style={{ display: 'flex', flexDirection: 'column', gap: 36 }}>
         <Eyebrow>Riesgo</Eyebrow>
         <h2 style={{ fontFamily: SANS, fontSize: 60, fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.015em', margin: 0, color: TEXT }}>
@@ -554,15 +554,15 @@ const CompoundInvesting: Page = () => (
           <title>Crecimiento lineal vs compuesto</title>
           <line x1="50" y1="30" x2="50" y2="360" stroke={MUTED} strokeWidth="1.5" opacity="0.4" />
           <line x1="50" y1="360" x2="640" y2="360" stroke={MUTED} strokeWidth="1.5" opacity="0.4" />
-          <polyline points="50,360 640,40" fill="none" stroke={MUTED} strokeWidth="3" />
-          <polyline points="50,360 150,355 250,338 350,295 450,215 530,120 600,50 640,28" fill="none" stroke={ACCENT} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-          <text x="540" y="90" fontFamily={MONO} fontSize="20" fill={MUTED}>lineal</text>
-          <text x="470" y="185" fontFamily={MONO} fontSize="20" fill={ACCENT}>compuesto</text>
+          <polyline points="50,360 640,160" fill="none" stroke={MUTED} strokeWidth="3" />
+          <polyline points="50,360 150,358 250,350 350,330 450,290 530,210 600,100 640,20" fill="none" stroke={ACCENT} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          <text x="380" y="225" fontFamily={MONO} fontSize="20" fill={MUTED}>lineal</text>
+          <text x="550" y="135" fontFamily={MONO} fontSize="20" fill={ACCENT}>compuesto</text>
           <text x="300" y="390" fontFamily={MONO} fontSize="18" fill={MUTED} textAnchor="middle">tiempo</text>
         </svg>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
           <div>
-            <div style={{ fontFamily: MONO, fontSize: 24, color: ACCENT, letterSpacing: 1.4, textTransform: 'uppercase', marginBottom: 8 }}>Principal</div>
+            <div style={{ fontFamily: MONO, fontSize: 24, color: ACCENT, letterSpacing: 1.4, textTransform: 'uppercase', marginBottom: 8 }}>Capital</div>
             <p style={{ fontSize: 30, lineHeight: 1.45, color: TEXT, margin: 0 }}>Contexto del proyecto</p>
           </div>
           <div>
@@ -593,7 +593,7 @@ const CompoundEngDefined: Page = () => (
       <div style={{ display: 'grid', gridTemplateColumns: '1.15fr 0.85fr', gap: 64, alignItems: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 36 }}>
           <p style={{ fontSize: 38, lineHeight: 1.4, color: TEXT, margin: 0, maxWidth: 760 }}>
-            Cada unidad de trabajo de ingeniería debería hacer más fáciles las siguientes, no más difíciles.
+            Cada unidad de trabajo de ingeniería debería hacer más fáciles las siguientes sesiones, no más difíciles.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
@@ -645,9 +645,8 @@ const CompoundEngDefined: Page = () => (
 
 const SkillLoop: Page = () => (
   <Frame>
-    <div style={{ position: 'absolute', left: 112, right: 112, top: 150, display: 'flex', flexDirection: 'column', gap: 48 }}>
+    <div style={{ position: 'absolute', left: 112, right: 112, top: 142, display: 'flex', flexDirection: 'column', gap: 42 }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-        <Eyebrow>El ancla accionable</Eyebrow>
         <h2 style={{ fontFamily: SANS, fontSize: 64, fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.015em', margin: 0, color: TEXT }}>
           El ciclo que puedes probar
         </h2>
@@ -663,9 +662,38 @@ const SkillLoop: Page = () => (
         <div style={{ display: 'flex', alignItems: 'center', padding: '0 10px' }}><Chevron /></div>
         <LoopStep cmd="/ce-compound" fn="documentar lo aprendido" />
       </div>
-      <p style={{ fontSize: 28, lineHeight: 1.45, color: MUTED, margin: 0, maxWidth: 1180 }}>
-        Esta referencia viene del plugin de Compound Engineering de Every: la idea es general, pero el plugin es el camino más rápido para probarla.
-      </p>
+      <a
+        href="https://github.com/everyinc/compound-engineering-plugin"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '260px 1fr',
+          gap: 28,
+          alignItems: 'center',
+          maxWidth: 1280,
+          background: CODE,
+          border: `2px solid ${ACCENT}`,
+          borderRadius: 10,
+          padding: '24px 30px',
+          color: TEXT,
+          textDecoration: 'none',
+          boxShadow: `14px 14px 0 rgba(34, 211, 238, 0.1)`,
+        }}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        <span style={{ display: 'flex', alignItems: 'center', gap: 14, fontFamily: MONO, fontSize: 22, fontWeight: 800, color: ACCENT, letterSpacing: 1.8, textTransform: 'uppercase' }}>
+          <span style={{ width: 12, height: 12, borderRadius: 999, background: SUCCESS }} />
+          Fuente práctica
+        </span>
+        <span style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <span style={{ fontSize: 34, fontWeight: 800, color: TEXT }}>
+            Plugin de Compound Engineering de Every
+          </span>
+          <span style={{ fontFamily: MONO, fontSize: 20, color: MUTED }}>
+            github.com/EveryInc/compound-engineering-plugin · el camino más rápido para probar este workflow
+          </span>
+        </span>
+      </a>
       <p style={{ fontSize: 32, lineHeight: 1.5, color: ACCENT, margin: 0 }}>
         No te detengas en el código generado. Termina con un artefacto reutilizable.
       </p>
@@ -966,7 +994,7 @@ const AdoptionLadder: Page = () => (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
         <Eyebrow>Adopción</Eyebrow>
         <h2 style={{ fontFamily: SANS, fontSize: 64, fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.015em', margin: 0, color: TEXT }}>
-          Empieza con un peldaño
+          Empieza paso a paso
         </h2>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -1014,7 +1042,7 @@ const Close: Page = () => (
     >
       <Eyebrow>El ROI real</Eyebrow>
       <h2 style={{ fontFamily: SANS, fontSize: 96, fontWeight: 900, lineHeight: 1.08, letterSpacing: '-0.02em', margin: 0, color: TEXT, maxWidth: 1500 }}>
-        Un sistema que sube la línea base después de cada feature. Eso es el retorno real.
+        Debemos apuntar a crear sistemas que suban la vara después de cada feature.
       </h2>
       <div style={{ width: 120, height: 4, background: PRIMARY }} />
       <p style={{ fontSize: 34, lineHeight: 1.5, color: ACCENT, margin: 0, fontFamily: MONO, letterSpacing: 0.5 }}>
@@ -1030,27 +1058,22 @@ const Outro: Page = () => (
   <Frame>
     <div style={{ position: 'absolute', left: 112, right: 112, top: 150, display: 'flex', flexDirection: 'column', gap: 44 }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-        <Eyebrow>Links y siguientes pasos</Eyebrow>
         <h2 style={{ fontFamily: SANS, fontSize: 64, fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.015em', margin: 0, color: TEXT }}>
           Links y siguientes pasos
         </h2>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
-        <div style={{ background: CODE, border: `2px solid ${PRIMARY}`, borderRadius: 10, padding: '32px 36px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <span style={{ fontFamily: MONO, fontSize: 24, color: ACCENT, letterSpacing: 1.4, textTransform: 'uppercase' }}>Ponente</span>
-          <span style={{ fontSize: 30, color: TEXT }}>@tu_handle</span>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 96 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+          <div style={{ background: '#ffffff', padding: 24, borderRadius: 10 }}>
+            <img src={slidesSite} alt="QR code de la presentación" style={{ width: 320, height: 320, objectFit: 'contain', display: 'block' }} />
+          </div>
+          <span style={{ fontFamily: MONO, fontSize: 26, fontWeight: 700, color: ACCENT, letterSpacing: 1.6, textTransform: 'uppercase' }}>Presentación</span>
         </div>
-        <div style={{ background: CODE, border: `2px solid ${PRIMARY}`, borderRadius: 10, padding: '32px 36px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <span style={{ fontFamily: MONO, fontSize: 24, color: ACCENT, letterSpacing: 1.4, textTransform: 'uppercase' }}>Presentación</span>
-          <span style={{ fontSize: 30, color: TEXT }}>github.com/tu/talk</span>
-        </div>
-        <div style={{ background: CODE, border: `2px solid ${PRIMARY}`, borderRadius: 10, padding: '32px 36px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <span style={{ fontFamily: MONO, fontSize: 24, color: ACCENT, letterSpacing: 1.4, textTransform: 'uppercase' }}>Plugin</span>
-          <span style={{ fontSize: 30, color: TEXT }}>github.com/EveryInc/compound-engineering-plugin</span>
-        </div>
-        <div style={{ background: CODE, border: `2px solid ${PRIMARY}`, borderRadius: 10, padding: '32px 36px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <span style={{ fontFamily: MONO, fontSize: 24, color: ACCENT, letterSpacing: 1.4, textTransform: 'uppercase' }}>Recursos</span>
-          <span style={{ fontSize: 30, color: TEXT }}>every.to/chain-of-thought</span>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+          <div style={{ background: '#ffffff', padding: 24, borderRadius: 10 }}>
+            <img src={linkedin} alt="QR code de LinkedIn" style={{ width: 320, height: 320, objectFit: 'contain', display: 'block' }} />
+          </div>
+          <span style={{ fontFamily: MONO, fontSize: 26, fontWeight: 700, color: ACCENT, letterSpacing: 1.6, textTransform: 'uppercase' }}>LinkedIn</span>
         </div>
       </div>
       <p style={{ fontSize: 34, lineHeight: 1.5, color: ACCENT, margin: 0 }}>
