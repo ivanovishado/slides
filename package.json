@@ -1,0 +1,28 @@
+{
+  "name": "open-slide",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "open-slide dev",
+    "build": "open-slide build",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check": "npm run typecheck && npm run lint",
+    "preview": "open-slide preview",
+    "sync:skills": "open-slide sync:skills"
+  },
+  "dependencies": {
+    "@open-slide/core": "^1.12.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "typescript": "6.0.3",
+    "vite": "^5.4.10"
+  }
+}
