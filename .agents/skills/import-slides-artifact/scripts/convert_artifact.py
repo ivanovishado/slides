@@ -56,8 +56,14 @@ def parse_style(css):
 
 
 def style_obj(css):
-    items = [f'{camel(k)}: {json.dumps(v, ensure_ascii=False)}' for k, v in parse_style(css).items()]
+    items = [f'{camel(k)}: {json.dumps(v, ensure_ascii=False)}' for k, v in parse_style(css).items()
+             if re.fullmatch(r'-?[a-z][a-z-]*', k)]
     return '{{ ' + ', '.join(items) + ' }}'
+
+
+def js(v):
+    """Encode a value as a JS string literal, so artifact content can never break out of the generated TSX."""
+    return json.dumps(str(v), ensure_ascii=False)
 
 
 def num(v, default=0.0):
@@ -86,6 +92,7 @@ class Converter(HTMLParser):
         self.notes = ''
         self.in_aside = False
         self.hidden = False
+        self.dropped = 0  # depth inside dropped elements such as <script>
 
     def emit(self, s):
         self.out.append(s)
@@ -120,7 +127,7 @@ class Converter(HTMLParser):
             if rest:
                 warn(f'{self.slide_id}: x-shape style ignored: {rest}')
             self.emit(
-                f'<Shape kind="{a.get("kind", "rect")}" color="{st.get("background", "transparent")}" '
+                f'<Shape kind={{{js(a.get("kind", "rect"))}}} color={{{js(st.get("background", "transparent"))}}} '
                 f'width={{{int(num(st.get("width"), 100))}}} height={{{int(num(st.get("height"), 100))}}} />'
             )
             self.stack.append((tag, '', False))
@@ -132,8 +139,8 @@ class Converter(HTMLParser):
             else:
                 self.emit(
                     f'<Connector x1={{{num(a["x1"])}}} y1={{{num(a["y1"])}}} x2={{{num(a["x2"])}}} y2={{{num(a["y2"])}}} '
-                    f'route="{a.get("route", "straight")}" head="{a.get("head", "end")}" '
-                    f'color="{st.get("color", "#000")}" stroke={{{num(st.get("border-width"), 2)}}} '
+                    f'route={{{js(a.get("route", "straight"))}}} head={{{js(a.get("head", "end"))}}} '
+                    f'color={{{js(st.get("color", "#000"))}}} stroke={{{num(st.get("border-width"), 2)}}} '
                     f'dashed={{{"true" if "dash" in st.get("border-style", "") else "false"}}} />'
                 )
             self.stack.append((tag, '', False))
@@ -153,6 +160,11 @@ class Converter(HTMLParser):
         if 'data-crop' in a:
             warn(f'{self.slide_id}: image crop (data-crop) not ported')
 
+        if not re.fullmatch(r'[a-z][a-z0-9-]*', tag) or tag in ('script', 'style', 'iframe', 'object', 'embed'):
+            warn(f'{self.slide_id}: <{tag}> dropped')
+            self.stack.append((tag, '', False))
+            self.dropped += 1
+            return
         svg = tag == 'svg' or self.in_svg()
         jsx_tag = SVG_TAGS.get(tag, tag) if svg else tag
         style = a.get('style', '')
@@ -166,7 +178,7 @@ class Converter(HTMLParser):
         pre, post = '', ''
         el_id = a.get('id')
         if el_id and el_id in self.shared_ids:
-            pre, post = f'<SharedElement id="{el_id}">', '</SharedElement>'
+            pre, post = f'<SharedElement id={{{js(el_id)}}}>', '</SharedElement>'
         if 'data-build-in' in a:
             if not pinned:
                 warn(f'{self.slide_id}: data-build-in on a flow element; revealed with a step but layout may shift')
@@ -175,6 +187,12 @@ class Converter(HTMLParser):
         parts = [jsx_tag]
         for k, v in attrs:
             if k in ('id', 'class', 'hidden') or k.startswith('data-'):
+                continue
+            if not re.fullmatch(r'[a-zA-Z][a-zA-Z0-9:_-]*', k) or k.lower().startswith('on'):
+                warn(f'{self.slide_id}: attribute {k!r} dropped')
+                continue
+            if k in ('href', 'xlink:href') and not re.match(r'(https?:|mailto:|#)', (v or '').strip(), re.I):
+                warn(f'{self.slide_id}: link {v!r} dropped (only http(s), mailto and # are kept)')
                 continue
             if k == 'style':
                 if style:
@@ -217,6 +235,8 @@ class Converter(HTMLParser):
             t, close, _ = self.stack.pop()
             self.emit(close)
             if t == tag:
+                if self.dropped and (not re.fullmatch(r'[a-z][a-z0-9-]*', t) or t in ('script', 'style', 'iframe', 'object', 'embed')):
+                    self.dropped -= 1
                 break
 
     def handle_startendtag(self, tag, attrs):
@@ -227,6 +247,8 @@ class Converter(HTMLParser):
     def handle_data(self, data):
         if self.in_aside:
             self.notes += data
+            return
+        if self.dropped:
             return
         if not data.strip():
             if data and '\n' not in data:
@@ -242,7 +264,7 @@ __IMPORTS__
 // Ported 1:1 from a Claude Slides artifact__SOURCE__.
 // Markup keeps the artifact's inline styles; BASE_CSS reproduces that runtime's element defaults.
 
-const FONT_HREFS = __FONTS__;
+const FONT_HREFS: string[] = __FONTS__;
 
 const BASE_CSS = `
 .osa { position: relative; width: 100%; height: 100%; box-sizing: border-box; overflow: hidden; display: flex; flex-direction: column; }
