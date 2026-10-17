@@ -63,6 +63,7 @@ def style_obj(css):
 
 def js(v):
     """Encode a value as a JS string literal, so artifact content can never break out of the generated TSX."""
+    # JSX "..." attributes don't honor backslash escapes, so values always go inside {…} as JS literals.
     return json.dumps(str(v), ensure_ascii=False)
 
 
@@ -202,15 +203,15 @@ class Converter(HTMLParser):
                     parts.append(f'src={{{self.assets[v]}}}')
                 else:
                     warn(f'{self.slide_id}: image {v} not found in export assets')
-                    parts.append(f'src={json.dumps(v)}')
+                    parts.append(f'src={{{js(v)}}}')
             elif svg and k in SVG_ATTRS:
-                parts.append(f'{SVG_ATTRS[k]}={json.dumps(v)}')
+                parts.append(f'{SVG_ATTRS[k]}={{{js(v)}}}')
             elif svg and ('-' in k or ':' in k) and not k.startswith('aria-'):
-                parts.append(f'{camel(k.replace(":", "-"))}={json.dumps(v)}')
+                parts.append(f'{camel(k.replace(":", "-"))}={{{js(v)}}}')
             elif k == 'for':
-                parts.append(f'htmlFor={json.dumps(v)}')
+                parts.append(f'htmlFor={{{js(v)}}}')
             else:
-                parts.append(f'{k}={json.dumps(v, ensure_ascii=False)}')
+                parts.append(f'{k}={{{js(v)}}}' if v is not None else f'{k}={{true}}')
         if self.parent() == 'section' and 'style' not in a and not pinned:
             parts.append('style={{ position: "relative" }}')
         if tag == 'a':
