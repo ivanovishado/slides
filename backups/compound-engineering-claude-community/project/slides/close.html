@@ -1,0 +1,39 @@
+<section id="close" data-transition="magic" style="background:#141210;color:#F4EFE6;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:48px">
+<x-embed style="position:absolute;left:0;top:0;width:1920px;height:1080px"><!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0;background:#141210;overflow:hidden"><canvas id="c" style="display:block;width:100vw;height:100vh"></canvas><script>
+const c=document.getElementById('c'),g=c.getContext('2d');
+let W=1,H=1,D=1;
+function rs(){D=devicePixelRatio||1;W=innerWidth;H=innerHeight;c.width=W*D;c.height=H*D;}
+rs();addEventListener('resize',rs);
+const N=760,GA=Math.PI*(3-Math.sqrt(5)),CX=1390,CY=540,K=16.5,F=[13,21,34],RATE=2.2,EXP=1.6,START=60;
+const P=[];for(let i=0;N>i;i++){P.push([K*Math.sqrt(i+1),i*GA,Math.pow(i,1/EXP)/RATE]);}
+const T0=performance.now()/1000-START;
+function f(){
+const t=performance.now()/1000-T0,s=Math.min(W/1920,H/1080);
+g.setTransform(D*s,0,0,D*s,D*(W-1920*s)/2,D*(H-1080*s)/2);
+g.fillStyle='#141210';g.fillRect(-400,-400,2720,1880);
+const rot=t*0.03,wave=(t*260)%1700;
+const pos=P.map(p=>[CX+p[0]*Math.cos(p[1]+rot),CY+p[0]*Math.sin(p[1]+rot)]);
+const rg=g.createRadialGradient(CX,CY,0,CX,CY,560);rg.addColorStop(0,'rgba(224,120,79,0.16)');rg.addColorStop(1,'rgba(224,120,79,0)');g.fillStyle=rg;g.fillRect(CX-560,CY-560,1120,1120);
+g.lineWidth=1.2;
+for(let i=0;N>i;i++){const age=t-P[i][2];if(0>age)break;
+for(const k of F){const j=i-k;if(0>j)continue;
+const w=Math.exp(-Math.pow(P[i][0]-wave,2)/6000);
+const a=0.1+0.35*w;
+g.strokeStyle='rgba(224,120,79,'+a.toFixed(3)+')';
+g.beginPath();g.moveTo(pos[i][0],pos[i][1]);g.lineTo(pos[j][0],pos[j][1]);g.stroke();}}
+for(let i=0;N>i;i++){const age=t-P[i][2];if(0>age)break;
+const w=Math.exp(-Math.pow(P[i][0]-wave,2)/3200);
+const r=1.2+Math.min(3.2,age*0.35)+w*2.6;
+g.fillStyle='rgba(244,239,230,'+Math.min(1,0.45+0.5*w).toFixed(3)+')';
+g.beginPath();g.arc(pos[i][0],pos[i][1],r,0,6.283);g.fill();}
+const lg=g.createLinearGradient(0,0,1150,0);lg.addColorStop(0,'rgba(20,18,16,0.97)');lg.addColorStop(0.55,'rgba(20,18,16,0.8)');lg.addColorStop(1,'rgba(20,18,16,0)');g.fillStyle=lg;g.fillRect(-400,-400,1550,1880);
+requestAnimationFrame(f);}
+requestAnimationFrame(f);
+</script></body></html></x-embed>
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:4px;color:#E0784F">EL ROI REAL</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:96px;font-weight:400;line-height:1.08;letter-spacing:-2px;color:#F4EFE6;width:1000px">Construye sistemas que suban la vara <i style="color:#E0784F">después de cada feature.</i></h2>
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;line-height:1.6;color:#CFC6B8;width:900px">Menos contexto desechable.<br>Menor bus factor.<br>Mejor siguiente cambio.</p>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between"><p style="font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:2px;color:#8F877B">COMPOUND ENGINEERING</p><p style="font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:2px;color:#8F877B">19 / 20</p></div>
+<div id="progress" style="position:absolute;left:0;top:0;width:1824px;height:6px;background:#E0784F"></div>
+<aside>[~13:00] ¿Se acuerdan de la espiral de la portada? Así se ve después de muchas sesiones que sí dejaron algo. El ROI real de trabajar con agentes no es escribir más código: es construir sistemas que suban la vara después de cada feature. Menos contexto desechable, menor bus factor y un mejor siguiente cambio.</aside>
+</section>

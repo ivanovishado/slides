@@ -1,0 +1,35 @@
+<section id="layers" data-transition="magic" style="background:#F4EFE6;color:#1F1D1A;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:space-between;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:4px;color:#B5502F">LA MEMORIA DEL SISTEMA</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:400;line-height:1.1;letter-spacing:-1px;color:#1F1D1A">Dónde vive lo aprendido</h2>
+</div>
+<div style="display:flex;flex-direction:column;border-radius:24px;overflow:hidden;border:1px solid #DDD5C7">
+<div style="display:flex;flex-direction:row;align-items:center;gap:40px;background:#FBF8F2;padding:28px 40px">
+<p style="width:320px;font-family:'Source Serif 4', Georgia, serif;font-size:44px;color:#1F1D1A">CLAUDE.md</p>
+<p style="width:260px;font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:2px;color:#B5502F">SIEMPRE</p>
+<p style="flex:1;font-size:28px;line-height:1.4;color:#5E5850">Convenciones, comandos y reglas del equipo</p>
+<p style="width:330px;font-family:'JetBrains Mono', monospace;font-size:24px;text-align:right;color:#6E665C">./CLAUDE.md</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:40px;background:#F1EADF;border-top:1px solid #DDD5C7;padding:28px 40px">
+<p style="width:320px;font-family:'Source Serif 4', Georgia, serif;font-size:44px;color:#1F1D1A">Skills</p>
+<p style="width:260px;font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:2px;color:#B5502F">BAJO DEMANDA</p>
+<p style="flex:1;font-size:28px;line-height:1.4;color:#5E5850">Procedimientos repetibles, con sus scripts</p>
+<p style="width:330px;font-family:'JetBrains Mono', monospace;font-size:24px;text-align:right;color:#6E665C">.claude/skills/</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:40px;background:#E8DFD1;border-top:1px solid #DDD5C7;padding:28px 40px">
+<p style="width:320px;font-family:'Source Serif 4', Georgia, serif;font-size:44px;color:#1F1D1A">Hooks</p>
+<p style="width:260px;font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:2px;color:#B5502F">EN CADA EVENTO</p>
+<p style="flex:1;font-size:28px;line-height:1.4;color:#4A453E">Deterministas: no dependen de la memoria del modelo</p>
+<p style="width:330px;font-family:'JetBrains Mono', monospace;font-size:24px;text-align:right;color:#5E5850">.claude/settings.json</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:40px;background:#1F1D1A;padding:28px 40px">
+<p style="width:320px;font-family:'Source Serif 4', Georgia, serif;font-size:44px;color:#F4EFE6">Subagentes</p>
+<p style="width:260px;font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:2px;color:#E0784F">AL DELEGAR</p>
+<p style="flex:1;font-size:28px;line-height:1.4;color:#CFC6B8">Especialistas con su propia ventana de contexto</p>
+<p style="width:330px;font-family:'JetBrains Mono', monospace;font-size:24px;text-align:right;color:#A39A8C">.claude/agents/</p>
+</div>
+</div>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between"><p style="font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:2px;color:#6E665C">COMPOUND ENGINEERING</p><p style="font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:2px;color:#6E665C">15 / 20</p></div>
+<div id="progress" style="position:absolute;left:0;top:0;width:1440px;height:6px;background:#B5502F"></div>
+<aside>¿Y dónde guardo cada cosa? Una regla simple. Si Claude debe saberlo siempre: CLAUDE.md. Si es un procedimiento que se usa a veces: una skill, que se carga solo cuando hace falta. Si no puede fallar nunca: un hook, porque es determinista y no depende de que el modelo se acuerde. Y si necesita su propio contexto: un subagente. Lo importante: todo vive en git, así que se revisa en un PR como cualquier otro código. Es memoria del equipo, no de una persona.</aside>
+</section>

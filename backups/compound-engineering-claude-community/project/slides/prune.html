@@ -1,0 +1,46 @@
+<section id="prune" data-transition="magic" style="background:#141210;color:#F4EFE6;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:space-between;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:4px;color:#E0784F">LA MEMORIA DEL SISTEMA</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:400;line-height:1.1;letter-spacing:-1px;color:#F4EFE6">La memoria también necesita mantenimiento</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:96px;align-items:center">
+<div style="width:520px;display:flex;flex-direction:column;gap:14px;background:#1E1B18;border:1px solid #34302B;border-radius:24px;padding:40px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;color:#8F877B">CLAUDE.md</p>
+<div style="width:380px;height:14px;border-radius:7px;background:#4A453E"></div>
+<div style="width:300px;height:14px;border-radius:7px;background:#4A453E"></div>
+<div style="width:420px;height:14px;border-radius:7px;background:#4A453E"></div>
+<div style="width:260px;height:14px;border-radius:7px;background:#4A453E"></div>
+<div style="width:400px;height:14px;border-radius:7px;background:#4A453E"></div>
+<div style="width:340px;height:14px;border-radius:7px;background:#4A453E"></div>
+<div style="width:220px;height:14px;border-radius:7px;background:#4A453E"></div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px;border-top:2px dashed #E0784F;padding:10px 0 0 0">
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:2px;color:#E0784F">PRESUPUESTO</p>
+</div>
+<div style="width:410px;height:14px;border-radius:7px;background:#E0784F;opacity:0.35"></div>
+<div style="width:330px;height:14px;border-radius:7px;background:#E0784F;opacity:0.3"></div>
+<div style="width:390px;height:14px;border-radius:7px;background:#E0784F;opacity:0.25"></div>
+<div style="width:280px;height:14px;border-radius:7px;background:#E0784F;opacity:0.2"></div>
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;color:#A39A8C">todo lo de aquí abajo es ruido</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column">
+<div style="display:flex;flex-direction:row;align-items:baseline;gap:32px;border-top:1px solid #34302B;padding:22px 0">
+<p style="width:180px;font-family:'Source Serif 4', Georgia, serif;font-size:44px;color:#F4EFE6">Mide</p>
+<p style="flex:1;font-size:28px;line-height:1.4;color:#CFC6B8">El tamaño de CLAUDE.md y de cada SKILL.md, en cada ciclo</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:baseline;gap:32px;border-top:1px solid #34302B;padding:22px 0">
+<p style="width:180px;font-family:'Source Serif 4', Georgia, serif;font-size:44px;color:#F4EFE6">Poda</p>
+<p style="flex:1;font-size:28px;line-height:1.4;color:#CFC6B8">Reglas duplicadas, obsoletas o que ya cubre un hook o un test</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:baseline;gap:32px;border-top:1px solid #34302B;border-bottom:1px solid #34302B;padding:22px 0">
+<p style="width:180px;font-family:'Source Serif 4', Georgia, serif;font-size:44px;color:#F4EFE6">Mueve</p>
+<p style="flex:1;font-size:28px;line-height:1.4;color:#CFC6B8">El detalle a skills que se cargan solo cuando hacen falta</p>
+</div>
+</div>
+<p style="font-family:'Source Serif 4', Georgia, serif;font-style:italic;font-size:44px;line-height:1.3;color:#E0784F">Que el ciclo de compound se revise a sí mismo.</p>
+</div>
+</div>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between"><p style="font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:2px;color:#8F877B">COMPOUND ENGINEERING</p><p style="font-family:'JetBrains Mono', monospace;font-size:24px;letter-spacing:2px;color:#8F877B">16 / 20</p></div>
+<div id="progress" style="position:absolute;left:0;top:0;width:1536px;height:6px;background:#E0784F"></div>
+<aside>Una advertencia honesta: si cada sesión agrega algo a CLAUDE.md, tarde o temprano se vuelve enorme, ocupa contexto en cada sesión y lo importante se pierde entre lo que ya no aplica. Así que el propio flujo de compound tiene que ser automantenible. Cada quien encontrará su forma, pero la idea es la misma: medir el tamaño, podar lo duplicado u obsoleto, y mover el detalle a skills que se cargan solo cuando hacen falta. Idealmente, la misma skill de compound lo revisa antes de agregar algo nuevo.</aside>
+</section>
