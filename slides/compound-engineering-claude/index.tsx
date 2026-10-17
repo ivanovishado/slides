@@ -6,7 +6,7 @@ import qrLinkedin from './assets/qr-linkedin.png';
 import qrSlides from './assets/qr-slides.png';
 import qrX from './assets/qr-x.png';
 
-// Ported 1:1 from the Claude Slides artifact (backup in backups/compound-engineering-claude-community/).
+// Ported 1:1 from the Claude Slides artifact https://claude.ai/artifact/4wHJ17F6PuQBR7tbpo6mZm.
 // The markup keeps the artifact's inline styles; BASE_CSS reproduces that runtime's element defaults.
 
 const FONT_HREF =
