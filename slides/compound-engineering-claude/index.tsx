@@ -237,7 +237,7 @@ const CoverSlide: Page = () => (
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '91px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '101px', height: '6px', background: '#E0784F' }}
       ></div>
     </MorphElement>
   </div>
@@ -296,7 +296,7 @@ const SpeakerSlide: Page = () => (
           padding: '32px 0 0 0',
         }}
       >
-        {'Me obsesiona una pregunta: ¿quién va a mantener el código que hoy escriben los agentes?'}
+        {'Me obsesiona una pregunta: ¿por qué cada sesión con Claude empieza de cero?'}
       </p>
     </div>
     <div
@@ -318,12 +318,12 @@ const SpeakerSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'02 / 21'}
+        {'02 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '183px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '202px', height: '6px', background: '#B5502F' }}
       ></div>
     </MorphElement>
   </div>
@@ -432,12 +432,12 @@ const HookSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'03 / 21'}
+        {'03 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '274px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '303px', height: '6px', background: '#E0784F' }}
       ></div>
     </MorphElement>
   </div>
@@ -563,12 +563,211 @@ const DiffSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'04 / 21'}
+        {'04 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '366px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '404px', height: '6px', background: '#B5502F' }}
+      ></div>
+    </MorphElement>
+  </div>
+);
+
+const FirstDaySlide: Page = () => (
+  <div
+    className="osa"
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '40px',
+      justifyContent: 'space-between',
+      padding: '128px 128px 160px',
+      background: '#b5502f',
+    }}
+  >
+    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <p
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '4px', color: '#fbf8f2' }}
+      >
+        {'EL MODELO MENTAL'}
+      </p>
+      <h2
+        style={{
+          fontFamily: "'Source Serif 4', Georgia, serif",
+          fontSize: '72px',
+          fontWeight: '400',
+          lineHeight: '1.1',
+          letterSpacing: '-1px',
+          color: '#fbf8f2',
+        }}
+      >
+        {'Cada sesión nueva de Claude es su primer día'}
+      </h2>
+    </div>
+    <div style={{ position: 'relative', display: 'flex', flexDirection: 'row', gap: '48px', alignItems: 'end' }}>
+      <div style={{ width: '420px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <p
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '24px',
+            letterSpacing: '4px',
+            color: '#f2cdbd',
+          }}
+        >
+          {'SIN MEMORIA'}
+        </p>
+        <p
+          style={{
+            fontFamily: "'Source Serif 4', Georgia, serif",
+            fontSize: '44px',
+            lineHeight: '1.2',
+            color: '#fbf8f2',
+          }}
+        >
+          {'Siempre es su primer día'}
+        </p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', flex: '1' }}>
+        <div
+          style={{
+            display: 'grid',
+            alignItems: 'end',
+            justifyItems: 'center',
+            gridTemplateColumns: '1fr 1fr 1fr 1fr',
+            padding: '0 0 12px',
+          }}
+        >
+          <div
+            style={{
+              width: '96px',
+              height: '96px',
+              display: 'flex',
+              flexDirection: 'column',
+              background: '#f2cdbd',
+              borderRadius: '256px',
+              opacity: '0.6',
+            }}
+          ></div>
+          <div
+            style={{
+              width: '96px',
+              height: '96px',
+              display: 'flex',
+              flexDirection: 'column',
+              background: '#f2cdbd',
+              borderRadius: '256px',
+              opacity: '0.6',
+            }}
+          ></div>
+          <div
+            style={{
+              width: '96px',
+              height: '96px',
+              display: 'flex',
+              flexDirection: 'column',
+              background: '#f2cdbd',
+              borderRadius: '256px',
+              opacity: '0.6',
+            }}
+          ></div>
+          <div
+            style={{
+              width: '96px',
+              height: '96px',
+              display: 'flex',
+              flexDirection: 'column',
+              background: '#f2cdbd',
+              borderRadius: '256px',
+              opacity: '0.6',
+            }}
+          ></div>
+        </div>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr 1fr',
+            padding: '16px 0 0',
+            borderTop: '2px solid #d98a6c',
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '24px',
+              textAlign: 'center',
+              color: '#f2cdbd',
+            }}
+          >
+            {'de cero'}
+          </p>
+          <p
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '24px',
+              textAlign: 'center',
+              color: '#f2cdbd',
+            }}
+          >
+            {'de cero'}
+          </p>
+          <p
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '24px',
+              textAlign: 'center',
+              color: '#f2cdbd',
+            }}
+          >
+            {'de cero'}
+          </p>
+          <p
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '24px',
+              textAlign: 'center',
+              color: '#f2cdbd',
+            }}
+          >
+            {'de cero'}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      style={{
+        position: 'absolute',
+        right: '128px',
+        bottom: '64px',
+        left: '128px',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      }}
+    >
+      <p
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#fbf8f2' }}
+      >
+        {'COMPOUND ENGINEERING'}
+      </p>
+      <p
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#fbf8f2' }}
+      >
+        {'05 / 19'}
+      </p>
+    </div>
+    <MorphElement id={'progress'}>
+      <div
+        style={{
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          width: '505px',
+          height: '6px',
+          display: 'flex',
+          flexDirection: 'column',
+          background: '#fbf8f2',
+        }}
       ></div>
     </MorphElement>
   </div>
@@ -652,12 +851,12 @@ const BusFactorSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'05 / 21'}
+        {'06 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '457px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '606px', height: '6px', background: '#B5502F' }}
       ></div>
     </MorphElement>
   </div>
@@ -743,12 +942,12 @@ const MultiplierSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'06 / 21'}
+        {'07 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '549px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '707px', height: '6px', background: '#E0784F' }}
       ></div>
     </MorphElement>
   </div>
@@ -813,341 +1012,12 @@ const QuestionSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'07 / 21'}
+        {'08 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '640px', height: '6px', background: '#B5502F' }}
-      ></div>
-    </MorphElement>
-  </div>
-);
-
-const MathSlide: Page = () => (
-  <div
-    className="osa"
-    style={{
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '40px',
-      justifyContent: 'space-between',
-      padding: '128px 128px 160px',
-      background: '#b5502f',
-    }}
-  >
-    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '4px', color: '#fbf8f2' }}
-      >
-        {'EL MODELO MENTAL'}
-      </p>
-      <h2
-        style={{
-          fontFamily: "'Source Serif 4', Georgia, serif",
-          fontSize: '72px',
-          fontWeight: '400',
-          lineHeight: '1.1',
-          letterSpacing: '-1px',
-          color: '#fbf8f2',
-        }}
-      >
-        {'Cada sesión nueva de Claude es su primer día'}
-      </h2>
-    </div>
-    <div style={{ position: 'relative', display: 'flex', flexDirection: 'row', gap: '48px', alignItems: 'end' }}>
-      <div style={{ width: '420px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        <p
-          style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '24px',
-            letterSpacing: '4px',
-            color: '#f2cdbd',
-          }}
-        >
-          {'SIN MEMORIA'}
-        </p>
-        <p
-          style={{
-            fontFamily: "'Source Serif 4', Georgia, serif",
-            fontSize: '44px',
-            lineHeight: '1.2',
-            color: '#f2cdbd',
-          }}
-        >
-          {'Siempre es su primer día'}
-        </p>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', flex: '1' }}>
-        <div
-          style={{
-            display: 'grid',
-            alignItems: 'end',
-            justifyItems: 'center',
-            gridTemplateColumns: '1fr 1fr 1fr 1fr',
-            padding: '0 0 12px',
-          }}
-        >
-          <div
-            style={{
-              width: '56px',
-              height: '56px',
-              display: 'flex',
-              flexDirection: 'column',
-              background: '#f2cdbd',
-              borderRadius: '256px',
-              opacity: '0.6',
-            }}
-          ></div>
-          <div
-            style={{
-              width: '56px',
-              height: '56px',
-              display: 'flex',
-              flexDirection: 'column',
-              background: '#f2cdbd',
-              borderRadius: '256px',
-              opacity: '0.6',
-            }}
-          ></div>
-          <div
-            style={{
-              width: '56px',
-              height: '56px',
-              display: 'flex',
-              flexDirection: 'column',
-              background: '#f2cdbd',
-              borderRadius: '256px',
-              opacity: '0.6',
-            }}
-          ></div>
-          <div
-            style={{
-              width: '56px',
-              height: '56px',
-              display: 'flex',
-              flexDirection: 'column',
-              background: '#f2cdbd',
-              borderRadius: '256px',
-              opacity: '0.6',
-            }}
-          ></div>
-        </div>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr 1fr',
-            padding: '16px 0 0',
-            borderTop: '2px solid #d98a6c',
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: '24px',
-              textAlign: 'center',
-              color: '#f2cdbd',
-            }}
-          >
-            {'de cero'}
-          </p>
-          <p
-            style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: '24px',
-              textAlign: 'center',
-              color: '#f2cdbd',
-            }}
-          >
-            {'de cero'}
-          </p>
-          <p
-            style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: '24px',
-              textAlign: 'center',
-              color: '#f2cdbd',
-            }}
-          >
-            {'de cero'}
-          </p>
-          <p
-            style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: '24px',
-              textAlign: 'center',
-              color: '#f2cdbd',
-            }}
-          >
-            {'de cero'}
-          </p>
-        </div>
-      </div>
-    </div>
-    <div style={{ position: 'relative', display: 'flex', flexDirection: 'row', gap: '48px', alignItems: 'end' }}>
-      <div style={{ width: '420px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        <p
-          style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '24px',
-            letterSpacing: '4px',
-            color: '#fbf8f2',
-          }}
-        >
-          {'CON COMPOUND'}
-        </p>
-        <p
-          style={{
-            fontFamily: "'Source Serif 4', Georgia, serif",
-            fontSize: '44px',
-            lineHeight: '1.2',
-            color: '#fbf8f2',
-          }}
-        >
-          {'Cada sesión llega '}
-          <i>{'sabiendo más'}</i>
-        </p>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', flex: '1' }}>
-        <div
-          style={{
-            display: 'grid',
-            alignItems: 'end',
-            justifyItems: 'center',
-            gridTemplateColumns: '1fr 1fr 1fr 1fr',
-            padding: '0 0 12px',
-          }}
-        >
-          <div
-            style={{
-              width: '56px',
-              height: '56px',
-              display: 'flex',
-              flexDirection: 'column',
-              background: 'radial-gradient(circle at 35% 30%, #fffdf8 0%, #fbf8f2 45%, #e6cfc2 100%)',
-              borderRadius: '256px',
-              boxShadow: '0 10px 24px #3a1a0e59',
-            }}
-          ></div>
-          <div
-            style={{
-              width: '104px',
-              height: '104px',
-              display: 'flex',
-              flexDirection: 'column',
-              background: 'radial-gradient(circle at 35% 30%, #fffdf8 0%, #fbf8f2 45%, #e6cfc2 100%)',
-              borderRadius: '256px',
-              boxShadow: '0 12px 32px #3a1a0e59',
-            }}
-          ></div>
-          <div
-            style={{
-              width: '168px',
-              height: '168px',
-              display: 'flex',
-              flexDirection: 'column',
-              background: 'radial-gradient(circle at 35% 30%, #fffdf8 0%, #fbf8f2 45%, #e6cfc2 100%)',
-              borderRadius: '256px',
-              boxShadow: '0 16px 40px #3a1a0e59',
-            }}
-          ></div>
-          <div
-            style={{
-              width: '256px',
-              height: '256px',
-              display: 'flex',
-              flexDirection: 'column',
-              background: 'radial-gradient(circle at 35% 30%, #fffdf8 0%, #fbf8f2 45%, #e6cfc2 100%)',
-              borderRadius: '256px',
-              boxShadow: '0 20px 56px #3a1a0e66',
-            }}
-          ></div>
-        </div>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr 1fr',
-            padding: '16px 0 0',
-            borderTop: '2px solid #fbf8f2',
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "'DM Sans', Arial, sans-serif",
-              fontSize: '28px',
-              textAlign: 'center',
-              color: '#fbf8f2',
-            }}
-          >
-            {'nada todavía'}
-          </p>
-          <p
-            style={{
-              fontFamily: "'DM Sans', Arial, sans-serif",
-              fontSize: '28px',
-              textAlign: 'center',
-              color: '#fbf8f2',
-            }}
-          >
-            {'+ CLAUDE.md'}
-          </p>
-          <p
-            style={{
-              fontFamily: "'DM Sans', Arial, sans-serif",
-              fontSize: '28px',
-              textAlign: 'center',
-              color: '#fbf8f2',
-            }}
-          >
-            {'+ skills'}
-          </p>
-          <p
-            style={{
-              fontFamily: "'DM Sans', Arial, sans-serif",
-              fontSize: '28px',
-              textAlign: 'center',
-              color: '#fbf8f2',
-            }}
-          >
-            {'+ tests y decisiones'}
-          </p>
-        </div>
-      </div>
-    </div>
-    <div
-      style={{
-        position: 'absolute',
-        right: '128px',
-        bottom: '64px',
-        left: '128px',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-      }}
-    >
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#fbf8f2' }}
-      >
-        {'COMPOUND ENGINEERING'}
-      </p>
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#fbf8f2' }}
-      >
-        {'08 / 21'}
-      </p>
-    </div>
-    <MorphElement id={'progress'}>
-      <div
-        style={{
-          position: 'absolute',
-          top: '0',
-          left: '0',
-          width: '731px',
-          height: '6px',
-          display: 'flex',
-          flexDirection: 'column',
-          background: '#fbf8f2',
-        }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '808px', height: '6px', background: '#B5502F' }}
       ></div>
     </MorphElement>
   </div>
@@ -1345,12 +1215,212 @@ const DefinitionSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'09 / 21'}
+        {'09 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '823px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '909px', height: '6px', background: '#E0784F' }}
+      ></div>
+    </MorphElement>
+  </div>
+);
+
+const MathSlide: Page = () => (
+  <div
+    className="osa"
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '40px',
+      justifyContent: 'space-between',
+      padding: '128px 128px 160px',
+      background: '#b5502f',
+    }}
+  >
+    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <p
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '4px', color: '#fbf8f2' }}
+      >
+        {'LA BOLA DE NIEVE'}
+      </p>
+      <h2
+        style={{
+          fontFamily: "'Source Serif 4', Georgia, serif",
+          fontSize: '72px',
+          fontWeight: '400',
+          lineHeight: '1.1',
+          letterSpacing: '-1px',
+          color: '#fbf8f2',
+        }}
+      >
+        {'Cada vuelta del ciclo deja una capa'}
+      </h2>
+    </div>
+    <div style={{ position: 'relative', display: 'flex', flexDirection: 'row', gap: '48px', alignItems: 'end' }}>
+      <div style={{ width: '420px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <p
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '24px',
+            letterSpacing: '4px',
+            color: '#fbf8f2',
+          }}
+        >
+          {'CON COMPOUND'}
+        </p>
+        <p
+          style={{
+            fontFamily: "'Source Serif 4', Georgia, serif",
+            fontSize: '44px',
+            lineHeight: '1.2',
+            color: '#fbf8f2',
+          }}
+        >
+          {'Cada sesión llega '}
+          <i>{'sabiendo más'}</i>
+        </p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', flex: '1' }}>
+        <div
+          style={{
+            display: 'grid',
+            alignItems: 'end',
+            justifyItems: 'center',
+            gridTemplateColumns: '1fr 1fr 1fr 1fr',
+            padding: '0 0 12px',
+          }}
+        >
+          <div
+            style={{
+              width: '56px',
+              height: '56px',
+              display: 'flex',
+              flexDirection: 'column',
+              background: 'radial-gradient(circle at 35% 30%, #fffdf8 0%, #fbf8f2 45%, #e6cfc2 100%)',
+              borderRadius: '256px',
+              boxShadow: '0 10px 24px #3a1a0e59',
+            }}
+          ></div>
+          <div
+            style={{
+              width: '104px',
+              height: '104px',
+              display: 'flex',
+              flexDirection: 'column',
+              background: 'radial-gradient(circle at 35% 30%, #fffdf8 0%, #fbf8f2 45%, #e6cfc2 100%)',
+              borderRadius: '256px',
+              boxShadow: '0 12px 32px #3a1a0e59',
+            }}
+          ></div>
+          <div
+            style={{
+              width: '168px',
+              height: '168px',
+              display: 'flex',
+              flexDirection: 'column',
+              background: 'radial-gradient(circle at 35% 30%, #fffdf8 0%, #fbf8f2 45%, #e6cfc2 100%)',
+              borderRadius: '256px',
+              boxShadow: '0 16px 40px #3a1a0e59',
+            }}
+          ></div>
+          <div
+            style={{
+              width: '256px',
+              height: '256px',
+              display: 'flex',
+              flexDirection: 'column',
+              background: 'radial-gradient(circle at 35% 30%, #fffdf8 0%, #fbf8f2 45%, #e6cfc2 100%)',
+              borderRadius: '256px',
+              boxShadow: '0 20px 56px #3a1a0e66',
+            }}
+          ></div>
+        </div>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr 1fr',
+            padding: '16px 0 0',
+            borderTop: '2px solid #fbf8f2',
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "'DM Sans', Arial, sans-serif",
+              fontSize: '28px',
+              textAlign: 'center',
+              color: '#fbf8f2',
+            }}
+          >
+            {'nada todavía'}
+          </p>
+          <p
+            style={{
+              fontFamily: "'DM Sans', Arial, sans-serif",
+              fontSize: '28px',
+              textAlign: 'center',
+              color: '#fbf8f2',
+            }}
+          >
+            {'+ CLAUDE.md'}
+          </p>
+          <p
+            style={{
+              fontFamily: "'DM Sans', Arial, sans-serif",
+              fontSize: '28px',
+              textAlign: 'center',
+              color: '#fbf8f2',
+            }}
+          >
+            {'+ skills'}
+          </p>
+          <p
+            style={{
+              fontFamily: "'DM Sans', Arial, sans-serif",
+              fontSize: '28px',
+              textAlign: 'center',
+              color: '#fbf8f2',
+            }}
+          >
+            {'+ tests y decisiones'}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      style={{
+        position: 'absolute',
+        right: '128px',
+        bottom: '64px',
+        left: '128px',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      }}
+    >
+      <p
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#fbf8f2' }}
+      >
+        {'COMPOUND ENGINEERING'}
+      </p>
+      <p
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#fbf8f2' }}
+      >
+        {'10 / 19'}
+      </p>
+    </div>
+    <MorphElement id={'progress'}>
+      <div
+        style={{
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          width: '1011px',
+          height: '6px',
+          display: 'flex',
+          flexDirection: 'column',
+          background: '#fbf8f2',
+        }}
       ></div>
     </MorphElement>
   </div>
@@ -1620,12 +1690,12 @@ const ClaudeLoopSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'10 / 21'}
+        {'11 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '914px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1112px', height: '6px', background: '#B5502F' }}
       ></div>
     </MorphElement>
   </div>
@@ -1814,12 +1884,12 @@ const PlanSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'11 / 21'}
+        {'12 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1006px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1213px', height: '6px', background: '#E0784F' }}
       ></div>
     </MorphElement>
   </div>
@@ -1843,7 +1913,7 @@ const WorkSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '4px', color: '#B5502F' }}
       >
-        {'02 · TRABAJAR'}
+        {'02 · TRABAJAR · 03 · REVISAR'}
       </p>
       <h2
         style={{
@@ -1855,7 +1925,7 @@ const WorkSlide: Page = () => (
           color: '#1F1D1A',
         }}
       >
-        {'Subagentes: trabajo en paralelo, contexto limpio'}
+        {'Subagentes: hacen el trabajo y lo revisan'}
       </h2>
     </div>
     <div style={{ position: 'relative', width: '1664px', height: '460px' }}>
@@ -1994,7 +2064,7 @@ const WorkSlide: Page = () => (
         <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '8px' }}>
           <p style={{ fontSize: '32px', lineHeight: '1.3', color: '#1F1D1A' }}>{'Ejecuta un paso del plan'}</p>
           <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#6E665C' }}>
-            {'regresa el diff'}
+            {'regresa el diff con pruebas'}
           </p>
         </div>
       </div>
@@ -2008,10 +2078,10 @@ const WorkSlide: Page = () => (
           flexDirection: 'row',
           alignItems: 'center',
           gap: '32px',
-          background: '#FBF8F2',
-          border: '1px solid #DDD5C7',
+          background: '#141210',
           borderRadius: '20px',
           padding: '24px 32px',
+          boxShadow: '0 12px 32px rgba(181,80,47,0.25)',
         }}
       >
         <p
@@ -2020,329 +2090,39 @@ const WorkSlide: Page = () => (
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: '24px',
             letterSpacing: '3px',
-            color: '#B5502F',
+            color: '#E0784F',
           }}
         >
-          {'VERIFICA'}
+          {'REVISA'}
         </p>
         <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <p style={{ fontSize: '32px', lineHeight: '1.3', color: '#1F1D1A' }}>{'Corre las pruebas y los linters'}</p>
-          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#6E665C' }}>
-            {'regresa qué falló y por qué'}
-          </p>
-        </div>
-      </div>
-    </div>
-    <p style={{ position: 'relative', fontSize: '32px', lineHeight: '1.45', color: '#5E5850', width: '1300px' }}>
-      {'Cada subagente trabaja en su propia ventana de contexto y devuelve solo lo que importa.'}
-    </p>
-    <div
-      style={{
-        position: 'absolute',
-        left: '128px',
-        right: '128px',
-        bottom: '64px',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-      }}
-    >
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
-      >
-        {'COMPOUND ENGINEERING'}
-      </p>
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
-      >
-        {'12 / 21'}
-      </p>
-    </div>
-    <MorphElement id={'progress'}>
-      <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1097px', height: '6px', background: '#B5502F' }}
-      ></div>
-    </MorphElement>
-  </div>
-);
-
-const ReviewSlide: Page = () => (
-  <div
-    className="osa"
-    style={{
-      background: '#F4EFE6',
-      color: '#1F1D1A',
-      fontFamily: "'DM Sans', Arial, sans-serif",
-      padding: '128px 128px 160px',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      gap: '48px',
-    }}
-  >
-    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '4px', color: '#B5502F' }}
-      >
-        {'03 · REVISAR'}
-      </p>
-      <h2
-        style={{
-          fontFamily: "'Source Serif 4', Georgia, serif",
-          fontSize: '72px',
-          fontWeight: '400',
-          lineHeight: '1.1',
-          letterSpacing: '-1px',
-          color: '#1F1D1A',
-        }}
-      >
-        {'Un revisor por cada lente'}
-      </h2>
-    </div>
-    <div style={{ position: 'relative', display: 'flex', flexDirection: 'row', gap: '80px', alignItems: 'center' }}>
-      <div style={{ width: '600px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-        <p
-          style={{
-            fontFamily: "'Source Serif 4', Georgia, serif",
-            fontSize: '32px',
-            color: '#1F1D1A',
-            background: '#FBF8F2',
-            border: '1px solid #DDD5C7',
-            borderRadius: '16px',
-            padding: '20px 24px',
-          }}
-        >
-          {'Corrección'}
-        </p>
-        <p
-          style={{
-            fontFamily: "'Source Serif 4', Georgia, serif",
-            fontSize: '32px',
-            color: '#1F1D1A',
-            background: '#FBF8F2',
-            border: '1px solid #DDD5C7',
-            borderRadius: '16px',
-            padding: '20px 24px',
-          }}
-        >
-          {'Pruebas'}
-        </p>
-        <p
-          style={{
-            fontFamily: "'Source Serif 4', Georgia, serif",
-            fontSize: '32px',
-            color: '#1F1D1A',
-            background: '#FBF8F2',
-            border: '1px solid #DDD5C7',
-            borderRadius: '16px',
-            padding: '20px 24px',
-          }}
-        >
-          {'Seguridad'}
-        </p>
-        <p
-          style={{
-            fontFamily: "'Source Serif 4', Georgia, serif",
-            fontSize: '32px',
-            color: '#1F1D1A',
-            background: '#FBF8F2',
-            border: '1px solid #DDD5C7',
-            borderRadius: '16px',
-            padding: '20px 24px',
-          }}
-        >
-          {'Rendimiento'}
-        </p>
-        <p
-          style={{
-            fontFamily: "'Source Serif 4', Georgia, serif",
-            fontSize: '32px',
-            color: '#1F1D1A',
-            background: '#FBF8F2',
-            border: '1px solid #DDD5C7',
-            borderRadius: '16px',
-            padding: '20px 24px',
-          }}
-        >
-          {'Arquitectura'}
-        </p>
-        <p
-          style={{
-            fontFamily: "'Source Serif 4', Georgia, serif",
-            fontSize: '32px',
-            color: '#1F1D1A',
-            background: '#FBF8F2',
-            border: '1px solid #DDD5C7',
-            borderRadius: '16px',
-            padding: '20px 24px',
-          }}
-        >
-          {'Mantenibilidad'}
-        </p>
-        <div
-          style={{
-            gridColumn: 'span 2',
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'baseline',
-            gap: '20px',
-            background: '#141210',
-            borderRadius: '16px',
-            padding: '20px 24px',
-            boxShadow: '0 12px 32px rgba(181,80,47,0.25)',
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "'Source Serif 4', Georgia, serif",
-              fontStyle: 'italic',
-              fontSize: '32px',
-              color: '#E0784F',
-            }}
-          >
-            {'Adversarial'}
-          </p>
+          <p style={{ fontSize: '32px', lineHeight: '1.3', color: '#F4EFE6' }}>{'Una lente por revisor'}</p>
           <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#CFC6B8' }}>
-            {'intenta romperlo'}
+            {'seguridad · pruebas · adversarial'}
           </p>
         </div>
       </div>
-      <div
-        style={{
-          flex: '1',
-          display: 'flex',
-          flexDirection: 'column',
-          background: '#141210',
-          borderRadius: '24px',
-          boxShadow: '0 24px 64px rgba(31,29,26,0.18)',
-        }}
+    </div>
+    <div
+      style={{
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'baseline',
+        gap: '32px',
+        borderTop: '1px solid #DDD5C7',
+        padding: '24px 0 0 0',
+      }}
+    >
+      <p
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: '16px',
-            padding: '20px 32px',
-            borderBottom: '1px solid #34302B',
-          }}
-        >
-          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#E0784F' }}>
-            {'/code-review'}
-          </p>
-          <div style={{ flex: '1' }}></div>
-          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#8F877B' }}>{'ejemplo'}</p>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', padding: '32px' }}>
-          <div style={{ display: 'flex', flexDirection: 'row', gap: '24px' }}>
-            <p
-              style={{ width: '210px', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#E0784F' }}
-            >
-              {'seguridad'}
-            </p>
-            <p style={{ flex: '1', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#F4EFE6' }}>
-              {'token impreso en logs'}
-            </p>
-            <p
-              style={{ width: '150px', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#9CC59A' }}
-            >
-              {'corregido'}
-            </p>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'row', gap: '24px' }}>
-            <p
-              style={{ width: '210px', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#E0784F' }}
-            >
-              {'pruebas'}
-            </p>
-            <p style={{ flex: '1', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#F4EFE6' }}>
-              {'falta el caso límite = 0'}
-            </p>
-            <p
-              style={{ width: '150px', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#9CC59A' }}
-            >
-              {'agregado'}
-            </p>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'row', gap: '24px' }}>
-            <p
-              style={{ width: '210px', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#E0784F' }}
-            >
-              {'rendimiento'}
-            </p>
-            <p style={{ flex: '1', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#F4EFE6' }}>
-              {'consulta N+1 en /orders'}
-            </p>
-            <p
-              style={{ width: '150px', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#9CC59A' }}
-            >
-              {'corregido'}
-            </p>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'row', gap: '24px' }}>
-            <p
-              style={{ width: '210px', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#E0784F' }}
-            >
-              {'arquitectura'}
-            </p>
-            <p style={{ flex: '1', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#F4EFE6' }}>
-              {'lógica duplicada en 2 handlers'}
-            </p>
-            <p
-              style={{ width: '150px', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#9CC59A' }}
-            >
-              {'extraída'}
-            </p>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'row', gap: '24px' }}>
-            <p
-              style={{ width: '210px', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#E0784F' }}
-            >
-              {'corrección'}
-            </p>
-            <p style={{ flex: '1', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#F4EFE6' }}>
-              {'off-by-one en la ventana'}
-            </p>
-            <p
-              style={{ width: '150px', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#9CC59A' }}
-            >
-              {'corregido'}
-            </p>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'row', gap: '24px' }}>
-            <p
-              style={{
-                width: '210px',
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: '24px',
-                fontWeight: '700',
-                color: '#E0784F',
-              }}
-            >
-              {'adversarial'}
-            </p>
-            <p style={{ flex: '1', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#F4EFE6' }}>
-              {'una ráfaga de requests evade el límite'}
-            </p>
-            <p
-              style={{ width: '150px', fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#9CC59A' }}
-            >
-              {'corregido'}
-            </p>
-          </div>
-          <p
-            style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: '24px',
-              color: '#CFC6B8',
-              borderTop: '1px solid #34302B',
-              padding: '20px 0 0 0',
-            }}
-          >
-            {'6 hallazgos · 6 resueltos antes del PR'}
-          </p>
-        </div>
-      </div>
+        {'DEJA'}
+      </p>
+      <p style={{ fontSize: '32px', fontWeight: '600', color: '#1F1D1A' }}>
+        {'Código probado, hallazgos resueltos antes del PR y tus subagentes en '}
+        <span style={{ color: '#B5502F' }}>{'.claude/agents/'}</span>
+      </p>
     </div>
     <div
       style={{
@@ -2363,12 +2143,12 @@ const ReviewSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'13 / 21'}
+        {'13 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1189px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1314px', height: '6px', background: '#B5502F' }}
       ></div>
     </MorphElement>
   </div>
@@ -2413,16 +2193,16 @@ const CompoundSlide: Page = () => (
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          gap: '40px',
+          gap: '32px',
           borderTop: '1px solid #34302B',
-          padding: '22px 0',
+          padding: '18px 0',
         }}
       >
-        <p style={{ width: '520px', fontSize: '32px', color: '#A39A8C' }}>{'Un bug que regresa'}</p>
+        <p style={{ width: '480px', fontSize: '32px', color: '#A39A8C' }}>{'Un bug que regresa'}</p>
         <Shape kind={'arrow-right'} color={'#E0784F'} width={48} height={24} />
         <p
           style={{
-            width: '480px',
+            width: '440px',
             fontFamily: "'Source Serif 4', Georgia, serif",
             fontSize: '44px',
             lineHeight: '1.2',
@@ -2430,6 +2210,17 @@ const CompoundSlide: Page = () => (
           }}
         >
           {'Un test de regresión'}
+        </p>
+        <p
+          style={{
+            width: '240px',
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '24px',
+            letterSpacing: '2px',
+            color: '#8F877B',
+          }}
+        >
+          {'EN CADA CAMBIO'}
         </p>
         <p
           style={{
@@ -2448,16 +2239,16 @@ const CompoundSlide: Page = () => (
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          gap: '40px',
+          gap: '32px',
           borderTop: '1px solid #34302B',
-          padding: '22px 0',
+          padding: '18px 0',
         }}
       >
-        <p style={{ width: '520px', fontSize: '32px', color: '#A39A8C' }}>{'Un hallazgo de revisión'}</p>
+        <p style={{ width: '480px', fontSize: '32px', color: '#A39A8C' }}>{'Un hallazgo de revisión'}</p>
         <Shape kind={'arrow-right'} color={'#E0784F'} width={48} height={24} />
         <p
           style={{
-            width: '480px',
+            width: '440px',
             fontFamily: "'Source Serif 4', Georgia, serif",
             fontSize: '44px',
             lineHeight: '1.2',
@@ -2465,6 +2256,17 @@ const CompoundSlide: Page = () => (
           }}
         >
           {'Una regla'}
+        </p>
+        <p
+          style={{
+            width: '240px',
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '24px',
+            letterSpacing: '2px',
+            color: '#8F877B',
+          }}
+        >
+          {'SIEMPRE'}
         </p>
         <p
           style={{
@@ -2483,16 +2285,16 @@ const CompoundSlide: Page = () => (
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          gap: '40px',
+          gap: '32px',
           borderTop: '1px solid #34302B',
-          padding: '22px 0',
+          padding: '18px 0',
         }}
       >
-        <p style={{ width: '520px', fontSize: '32px', color: '#A39A8C' }}>{'Un procedimiento que repites'}</p>
+        <p style={{ width: '480px', fontSize: '32px', color: '#A39A8C' }}>{'Un procedimiento que repites'}</p>
         <Shape kind={'arrow-right'} color={'#E0784F'} width={48} height={24} />
         <p
           style={{
-            width: '480px',
+            width: '440px',
             fontFamily: "'Source Serif 4', Georgia, serif",
             fontSize: '44px',
             lineHeight: '1.2',
@@ -2500,6 +2302,17 @@ const CompoundSlide: Page = () => (
           }}
         >
           {'Una skill'}
+        </p>
+        <p
+          style={{
+            width: '240px',
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '24px',
+            letterSpacing: '2px',
+            color: '#8F877B',
+          }}
+        >
+          {'BAJO DEMANDA'}
         </p>
         <p
           style={{
@@ -2518,16 +2331,16 @@ const CompoundSlide: Page = () => (
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          gap: '40px',
+          gap: '32px',
           borderTop: '1px solid #34302B',
-          padding: '22px 0',
+          padding: '18px 0',
         }}
       >
-        <p style={{ width: '520px', fontSize: '32px', color: '#A39A8C' }}>{'Una regla que no puede fallar'}</p>
+        <p style={{ width: '480px', fontSize: '32px', color: '#A39A8C' }}>{'Una regla que no puede fallar'}</p>
         <Shape kind={'arrow-right'} color={'#E0784F'} width={48} height={24} />
         <p
           style={{
-            width: '480px',
+            width: '440px',
             fontFamily: "'Source Serif 4', Georgia, serif",
             fontSize: '44px',
             lineHeight: '1.2',
@@ -2535,6 +2348,17 @@ const CompoundSlide: Page = () => (
           }}
         >
           {'Un hook'}
+        </p>
+        <p
+          style={{
+            width: '240px',
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '24px',
+            letterSpacing: '2px',
+            color: '#8F877B',
+          }}
+        >
+          {'EN CADA EVENTO'}
         </p>
         <p
           style={{
@@ -2553,31 +2377,36 @@ const CompoundSlide: Page = () => (
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          gap: '40px',
+          gap: '32px',
           borderTop: '1px solid #34302B',
           borderBottom: '1px solid #34302B',
-          padding: '22px 0',
+          padding: '18px 0',
         }}
       >
-        <p style={{ width: '520px', fontSize: '32px', color: '#A39A8C' }}>{'Una decisión costosa'}</p>
+        <p style={{ width: '480px', fontSize: '32px', color: '#A39A8C' }}>{'Una decisión costosa'}</p>
         <Shape kind={'arrow-right'} color={'#E0784F'} width={48} height={24} />
-        <div style={{ width: '480px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-          <p
-            style={{
-              fontFamily: "'Source Serif 4', Georgia, serif",
-              fontSize: '44px',
-              lineHeight: '1.2',
-              color: '#F4EFE6',
-            }}
-          >
-            {'Un ADR'}
-          </p>
-          <p
-            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', lineHeight: '1.4', color: '#A39A8C' }}
-          >
-            {'registro de decisión: qué elegimos, por qué y qué descartamos'}
-          </p>
-        </div>
+        <p
+          style={{
+            width: '440px',
+            fontFamily: "'Source Serif 4', Georgia, serif",
+            fontSize: '44px',
+            lineHeight: '1.2',
+            color: '#F4EFE6',
+          }}
+        >
+          {'Un ADR'}
+        </p>
+        <p
+          style={{
+            width: '240px',
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '24px',
+            letterSpacing: '2px',
+            color: '#8F877B',
+          }}
+        >
+          {'AL DECIDIR'}
+        </p>
         <p
           style={{
             flex: '1',
@@ -2590,6 +2419,34 @@ const CompoundSlide: Page = () => (
           {'docs/adr/'}
         </p>
       </div>
+    </div>
+    <div
+      style={{
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '40px',
+        background: '#1E1B18',
+        border: '1px solid #34302B',
+        borderRadius: '20px',
+        padding: '24px 40px',
+      }}
+    >
+      <p
+        style={{
+          width: '260px',
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '24px',
+          letterSpacing: '3px',
+          color: '#E0784F',
+        }}
+      >
+        {'MANTENIMIENTO'}
+      </p>
+      <p style={{ flex: '1', fontSize: '32px', lineHeight: '1.3', color: '#CFC6B8' }}>
+        {'Mide su tamaño, poda lo duplicado y mueve el detalle a skills.'}
+      </p>
     </div>
     <div
       style={{
@@ -2610,12 +2467,12 @@ const CompoundSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'14 / 21'}
+        {'14 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1280px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1415px', height: '6px', background: '#E0784F' }}
       ></div>
     </MorphElement>
   </div>
@@ -2885,7 +2742,7 @@ const RealCaseSlide: Page = () => (
           >
             {'La memoria no estaba en el agente.'}
             <br />
-            <i style={{ color: '#E0784F' }}>{'Estaba en el repo.'}</i>
+            <i style={{ color: '#E0784F' }}>{'Estaba en git.'}</i>
           </p>
         </div>
       </Step>
@@ -2909,595 +2766,12 @@ const RealCaseSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'15 / 21'}
+        {'15 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1371px', height: '6px', background: '#E0784F' }}
-      ></div>
-    </MorphElement>
-  </div>
-);
-
-const LayersSlide: Page = () => (
-  <div
-    className="osa"
-    style={{
-      background: '#F4EFE6',
-      color: '#1F1D1A',
-      fontFamily: "'DM Sans', Arial, sans-serif",
-      padding: '128px 128px 160px',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      gap: '48px',
-    }}
-  >
-    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '4px', color: '#B5502F' }}
-      >
-        {'LA MEMORIA DEL SISTEMA'}
-      </p>
-      <h2
-        style={{
-          fontFamily: "'Source Serif 4', Georgia, serif",
-          fontSize: '72px',
-          fontWeight: '400',
-          lineHeight: '1.1',
-          letterSpacing: '-1px',
-          color: '#1F1D1A',
-        }}
-      >
-        {'Dónde vive lo aprendido'}
-      </h2>
-    </div>
-    <div
-      style={{
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        borderRadius: '24px',
-        overflow: 'hidden',
-        border: '1px solid #DDD5C7',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: '40px',
-          background: '#FBF8F2',
-          padding: '28px 40px',
-        }}
-      >
-        <p
-          style={{ width: '320px', fontFamily: "'Source Serif 4', Georgia, serif", fontSize: '44px', color: '#1F1D1A' }}
-        >
-          {'CLAUDE.md'}
-        </p>
-        <p
-          style={{
-            width: '260px',
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '24px',
-            letterSpacing: '2px',
-            color: '#B5502F',
-          }}
-        >
-          {'SIEMPRE'}
-        </p>
-        <p style={{ flex: '1', fontSize: '28px', lineHeight: '1.4', color: '#5E5850' }}>
-          {'Convenciones, comandos y reglas del equipo'}
-        </p>
-        <p
-          style={{
-            width: '330px',
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '24px',
-            textAlign: 'right',
-            color: '#6E665C',
-          }}
-        >
-          {'./CLAUDE.md'}
-        </p>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: '40px',
-          background: '#F1EADF',
-          borderTop: '1px solid #DDD5C7',
-          padding: '28px 40px',
-        }}
-      >
-        <p
-          style={{ width: '320px', fontFamily: "'Source Serif 4', Georgia, serif", fontSize: '44px', color: '#1F1D1A' }}
-        >
-          {'Skills'}
-        </p>
-        <p
-          style={{
-            width: '260px',
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '24px',
-            letterSpacing: '2px',
-            color: '#B5502F',
-          }}
-        >
-          {'BAJO DEMANDA'}
-        </p>
-        <p style={{ flex: '1', fontSize: '28px', lineHeight: '1.4', color: '#5E5850' }}>
-          {'Procedimientos repetibles, con sus scripts'}
-        </p>
-        <p
-          style={{
-            width: '330px',
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '24px',
-            textAlign: 'right',
-            color: '#6E665C',
-          }}
-        >
-          {'.claude/skills/'}
-        </p>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: '40px',
-          background: '#E8DFD1',
-          borderTop: '1px solid #DDD5C7',
-          padding: '28px 40px',
-        }}
-      >
-        <p
-          style={{ width: '320px', fontFamily: "'Source Serif 4', Georgia, serif", fontSize: '44px', color: '#1F1D1A' }}
-        >
-          {'Hooks'}
-        </p>
-        <p
-          style={{
-            width: '260px',
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '24px',
-            letterSpacing: '2px',
-            color: '#B5502F',
-          }}
-        >
-          {'EN CADA EVENTO'}
-        </p>
-        <p style={{ flex: '1', fontSize: '28px', lineHeight: '1.4', color: '#4A453E' }}>
-          {'Deterministas: no dependen de la memoria del modelo'}
-        </p>
-        <p
-          style={{
-            width: '330px',
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '24px',
-            textAlign: 'right',
-            color: '#5E5850',
-          }}
-        >
-          {'.claude/settings.json'}
-        </p>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: '40px',
-          background: '#1F1D1A',
-          padding: '28px 40px',
-        }}
-      >
-        <p
-          style={{ width: '320px', fontFamily: "'Source Serif 4', Georgia, serif", fontSize: '44px', color: '#F4EFE6' }}
-        >
-          {'Subagentes'}
-        </p>
-        <p
-          style={{
-            width: '260px',
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '24px',
-            letterSpacing: '2px',
-            color: '#E0784F',
-          }}
-        >
-          {'AL DELEGAR'}
-        </p>
-        <p style={{ flex: '1', fontSize: '28px', lineHeight: '1.4', color: '#CFC6B8' }}>
-          {'Especialistas con su propia ventana de contexto'}
-        </p>
-        <p
-          style={{
-            width: '330px',
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '24px',
-            textAlign: 'right',
-            color: '#A39A8C',
-          }}
-        >
-          {'.claude/agents/'}
-        </p>
-      </div>
-    </div>
-    <div
-      style={{
-        position: 'absolute',
-        left: '128px',
-        right: '128px',
-        bottom: '64px',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-      }}
-    >
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
-      >
-        {'COMPOUND ENGINEERING'}
-      </p>
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
-      >
-        {'16 / 21'}
-      </p>
-    </div>
-    <MorphElement id={'progress'}>
-      <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1463px', height: '6px', background: '#B5502F' }}
-      ></div>
-    </MorphElement>
-  </div>
-);
-
-const PruneSlide: Page = () => (
-  <div
-    className="osa"
-    style={{
-      background: '#141210',
-      color: '#F4EFE6',
-      fontFamily: "'DM Sans', Arial, sans-serif",
-      padding: '128px 128px 160px',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      gap: '48px',
-    }}
-  >
-    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '4px', color: '#E0784F' }}
-      >
-        {'LA MEMORIA DEL SISTEMA'}
-      </p>
-      <h2
-        style={{
-          fontFamily: "'Source Serif 4', Georgia, serif",
-          fontSize: '72px',
-          fontWeight: '400',
-          lineHeight: '1.1',
-          letterSpacing: '-1px',
-          color: '#F4EFE6',
-        }}
-      >
-        {'La memoria también necesita mantenimiento'}
-      </h2>
-    </div>
-    <div style={{ position: 'relative', display: 'flex', flexDirection: 'row', gap: '96px', alignItems: 'center' }}>
-      <div
-        style={{
-          width: '520px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '14px',
-          background: '#1E1B18',
-          border: '1px solid #34302B',
-          borderRadius: '24px',
-          padding: '40px',
-        }}
-      >
-        <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#8F877B' }}>{'CLAUDE.md'}</p>
-        <div style={{ width: '380px', height: '14px', borderRadius: '7px', background: '#4A453E' }}></div>
-        <div style={{ width: '300px', height: '14px', borderRadius: '7px', background: '#4A453E' }}></div>
-        <div style={{ width: '420px', height: '14px', borderRadius: '7px', background: '#4A453E' }}></div>
-        <div style={{ width: '260px', height: '14px', borderRadius: '7px', background: '#4A453E' }}></div>
-        <div style={{ width: '400px', height: '14px', borderRadius: '7px', background: '#4A453E' }}></div>
-        <div style={{ width: '340px', height: '14px', borderRadius: '7px', background: '#4A453E' }}></div>
-        <div style={{ width: '220px', height: '14px', borderRadius: '7px', background: '#4A453E' }}></div>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: '16px',
-            borderTop: '2px dashed #E0784F',
-            padding: '10px 0 0 0',
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: '24px',
-              letterSpacing: '2px',
-              color: '#E0784F',
-            }}
-          >
-            {'PRESUPUESTO'}
-          </p>
-        </div>
-        <div
-          style={{ width: '410px', height: '14px', borderRadius: '7px', background: '#E0784F', opacity: '0.35' }}
-        ></div>
-        <div
-          style={{ width: '330px', height: '14px', borderRadius: '7px', background: '#E0784F', opacity: '0.3' }}
-        ></div>
-        <div
-          style={{ width: '390px', height: '14px', borderRadius: '7px', background: '#E0784F', opacity: '0.25' }}
-        ></div>
-        <div
-          style={{ width: '280px', height: '14px', borderRadius: '7px', background: '#E0784F', opacity: '0.2' }}
-        ></div>
-        <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#A39A8C' }}>
-          {'todo lo de aquí abajo es ruido'}
-        </p>
-      </div>
-      <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '32px' }}>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'baseline',
-              gap: '32px',
-              borderTop: '1px solid #34302B',
-              padding: '22px 0',
-            }}
-          >
-            <p
-              style={{
-                width: '180px',
-                fontFamily: "'Source Serif 4', Georgia, serif",
-                fontSize: '44px',
-                color: '#F4EFE6',
-              }}
-            >
-              {'Mide'}
-            </p>
-            <p style={{ flex: '1', fontSize: '28px', lineHeight: '1.4', color: '#CFC6B8' }}>
-              {'El tamaño de CLAUDE.md y de cada SKILL.md, en cada ciclo'}
-            </p>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'baseline',
-              gap: '32px',
-              borderTop: '1px solid #34302B',
-              padding: '22px 0',
-            }}
-          >
-            <p
-              style={{
-                width: '180px',
-                fontFamily: "'Source Serif 4', Georgia, serif",
-                fontSize: '44px',
-                color: '#F4EFE6',
-              }}
-            >
-              {'Poda'}
-            </p>
-            <p style={{ flex: '1', fontSize: '28px', lineHeight: '1.4', color: '#CFC6B8' }}>
-              {'Reglas duplicadas, obsoletas o que ya cubre un hook o un test'}
-            </p>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'baseline',
-              gap: '32px',
-              borderTop: '1px solid #34302B',
-              borderBottom: '1px solid #34302B',
-              padding: '22px 0',
-            }}
-          >
-            <p
-              style={{
-                width: '180px',
-                fontFamily: "'Source Serif 4', Georgia, serif",
-                fontSize: '44px',
-                color: '#F4EFE6',
-              }}
-            >
-              {'Mueve'}
-            </p>
-            <p style={{ flex: '1', fontSize: '28px', lineHeight: '1.4', color: '#CFC6B8' }}>
-              {'El detalle a skills que se cargan solo cuando hacen falta'}
-            </p>
-          </div>
-        </div>
-        <p
-          style={{
-            fontFamily: "'Source Serif 4', Georgia, serif",
-            fontStyle: 'italic',
-            fontSize: '44px',
-            lineHeight: '1.3',
-            color: '#E0784F',
-          }}
-        >
-          {'Que el ciclo de compound se revise a sí mismo.'}
-        </p>
-      </div>
-    </div>
-    <div
-      style={{
-        position: 'absolute',
-        left: '128px',
-        right: '128px',
-        bottom: '64px',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-      }}
-    >
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
-      >
-        {'COMPOUND ENGINEERING'}
-      </p>
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
-      >
-        {'17 / 21'}
-      </p>
-    </div>
-    <MorphElement id={'progress'}>
-      <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1554px', height: '6px', background: '#E0784F' }}
-      ></div>
-    </MorphElement>
-  </div>
-);
-
-const StealSlide: Page = () => (
-  <div
-    className="osa"
-    style={{
-      background: '#F4EFE6',
-      color: '#1F1D1A',
-      fontFamily: "'DM Sans', Arial, sans-serif",
-      padding: '128px 128px 160px',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      gap: '48px',
-    }}
-  >
-    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '4px', color: '#B5502F' }}
-      >
-        {'PARA LLEVAR · TÓMALE FOTO'}
-      </p>
-      <h2
-        style={{
-          fontFamily: "'Source Serif 4', Georgia, serif",
-          fontSize: '72px',
-          fontWeight: '400',
-          lineHeight: '1.1',
-          letterSpacing: '-1px',
-          color: '#1F1D1A',
-        }}
-      >
-        {'El prompt que cierra cada sesión'}
-      </h2>
-    </div>
-    <div
-      style={{
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '32px',
-        background: '#141210',
-        borderRadius: '28px',
-        padding: '56px 72px',
-        boxShadow: '0 32px 80px rgba(31,29,26,0.22)',
-      }}
-    >
-      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '40px', lineHeight: '1.5', color: '#F4EFE6' }}>
-        <span style={{ color: '#E0784F' }}>{'>'}</span>
-        {' Antes de cerrar: ¿qué aprendimos en esta sesión que la próxima debería saber?'}
-      </p>
-      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '40px', lineHeight: '1.5', color: '#CFC6B8' }}>
-        {'Propón dónde guardarlo (CLAUDE.md, una skill, un hook o un test) y hazlo.'}
-      </p>
-    </div>
-    <div
-      style={{
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: '48px',
-        background: '#B5502F',
-        borderRadius: '24px',
-        padding: '32px 56px',
-        boxShadow: '0 20px 56px rgba(181,80,47,0.35)',
-      }}
-    >
-      <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        <p
-          style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '24px',
-            letterSpacing: '4px',
-            color: '#F2CDBD',
-          }}
-        >
-          {'MEJOR AÚN'}
-        </p>
-        <p
-          style={{
-            fontFamily: "'Source Serif 4', Georgia, serif",
-            fontSize: '44px',
-            lineHeight: '1.2',
-            color: '#FBF8F2',
-          }}
-        >
-          {'Conviértelo en tu propia skill '}
-          <i>{'/compound'}</i>
-          {' y vuélvelo un hábito.'}
-        </p>
-      </div>
-      <p
-        style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: '24px',
-          color: '#FBF8F2',
-          background: '#3A1A0E',
-          borderRadius: '12px',
-          padding: '16px 24px',
-        }}
-      >
-        {'.claude/skills/compound/'}
-      </p>
-    </div>
-    <div
-      style={{
-        position: 'absolute',
-        left: '128px',
-        right: '128px',
-        bottom: '64px',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-      }}
-    >
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
-      >
-        {'COMPOUND ENGINEERING'}
-      </p>
-      <p
-        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
-      >
-        {'18 / 21'}
-      </p>
-    </div>
-    <MorphElement id={'progress'}>
-      <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1646px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1516px', height: '6px', background: '#E0784F' }}
       ></div>
     </MorphElement>
   </div>
@@ -3675,6 +2949,33 @@ const WeekSlide: Page = () => (
     </div>
     <div
       style={{
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '40px',
+        border: '2px dashed #E0784F',
+        borderRadius: '20px',
+        padding: '24px 40px',
+      }}
+    >
+      <p
+        style={{
+          width: '300px',
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '24px',
+          letterSpacing: '3px',
+          color: '#E0784F',
+        }}
+      >
+        {'TODOS LOS DÍAS'}
+      </p>
+      <p style={{ flex: '1', fontSize: '32px', lineHeight: '1.3', color: '#F4EFE6' }}>
+        {'Antes de escribir exit: el prompt de compound.'}
+      </p>
+    </div>
+    <div
+      style={{
         position: 'absolute',
         left: '128px',
         right: '128px',
@@ -3692,12 +2993,145 @@ const WeekSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'19 / 21'}
+        {'16 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1737px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1617px', height: '6px', background: '#E0784F' }}
+      ></div>
+    </MorphElement>
+  </div>
+);
+
+const StealSlide: Page = () => (
+  <div
+    className="osa"
+    style={{
+      background: '#F4EFE6',
+      color: '#1F1D1A',
+      fontFamily: "'DM Sans', Arial, sans-serif",
+      padding: '128px 128px 160px',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      gap: '48px',
+    }}
+  >
+    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <p
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '4px', color: '#B5502F' }}
+      >
+        {'PARA LLEVAR · TÓMALE FOTO'}
+      </p>
+      <h2
+        style={{
+          fontFamily: "'Source Serif 4', Georgia, serif",
+          fontSize: '72px',
+          fontWeight: '400',
+          lineHeight: '1.1',
+          letterSpacing: '-1px',
+          color: '#1F1D1A',
+        }}
+      >
+        {'El prompt que cierra cada sesión'}
+      </h2>
+    </div>
+    <div
+      style={{
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '32px',
+        background: '#141210',
+        borderRadius: '28px',
+        padding: '56px 72px',
+        boxShadow: '0 32px 80px rgba(31,29,26,0.22)',
+      }}
+    >
+      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '40px', lineHeight: '1.5', color: '#F4EFE6' }}>
+        <span style={{ color: '#E0784F' }}>{'>'}</span>
+        {' Antes de cerrar: ¿qué aprendimos en esta sesión que la próxima debería saber?'}
+      </p>
+      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '40px', lineHeight: '1.5', color: '#CFC6B8' }}>
+        {'Propón dónde guardarlo (CLAUDE.md, una skill, un hook o un test) y hazlo.'}
+      </p>
+    </div>
+    <div
+      style={{
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '48px',
+        background: '#B5502F',
+        borderRadius: '24px',
+        padding: '32px 56px',
+        boxShadow: '0 20px 56px rgba(181,80,47,0.35)',
+      }}
+    >
+      <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <p
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '24px',
+            letterSpacing: '4px',
+            color: '#F2CDBD',
+          }}
+        >
+          {'MEJOR AÚN'}
+        </p>
+        <p
+          style={{
+            fontFamily: "'Source Serif 4', Georgia, serif",
+            fontSize: '44px',
+            lineHeight: '1.2',
+            color: '#FBF8F2',
+          }}
+        >
+          {'Conviértelo en tu propia skill '}
+          <i>{'/compound'}</i>
+          {' y vuélvelo un hábito.'}
+        </p>
+      </div>
+      <p
+        style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '24px',
+          color: '#FBF8F2',
+          background: '#3A1A0E',
+          borderRadius: '12px',
+          padding: '16px 24px',
+        }}
+      >
+        {'.claude/skills/compound/'}
+      </p>
+    </div>
+    <div
+      style={{
+        position: 'absolute',
+        left: '128px',
+        right: '128px',
+        bottom: '64px',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      }}
+    >
+      <p
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
+      >
+        {'COMPOUND ENGINEERING'}
+      </p>
+      <p
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
+      >
+        {'17 / 19'}
+      </p>
+    </div>
+    <MorphElement id={'progress'}>
+      <div
+        style={{ position: 'absolute', left: '0', top: '0', width: '1718px', height: '6px', background: '#B5502F' }}
       ></div>
     </MorphElement>
   </div>
@@ -3727,7 +3161,7 @@ const CloseSlide: Page = () => (
         color: '#E0784F',
       }}
     >
-      {'EL ROI REAL'}
+      {'LA PROMESA'}
     </p>
     <h2
       style={{
@@ -3741,8 +3175,8 @@ const CloseSlide: Page = () => (
         width: '1000px',
       }}
     >
-      {'Construye sistemas que suban la vara '}
-      <i style={{ color: '#E0784F' }}>{'después de cada feature.'}</i>
+      {'Que cada sesión deje tu repo '}
+      <i style={{ color: '#E0784F' }}>{'más inteligente que antes.'}</i>
     </h2>
     <p
       style={{
@@ -3779,12 +3213,12 @@ const CloseSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'20 / 21'}
+        {'18 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1829px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1819px', height: '6px', background: '#E0784F' }}
       ></div>
     </MorphElement>
   </div>
@@ -3965,7 +3399,7 @@ const OutroSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'21 / 21'}
+        {'19 / 19'}
       </p>
     </div>
     <MorphElement id={'progress'}>
@@ -3978,25 +3412,23 @@ const OutroSlide: Page = () => (
 
 export const notes = [
   'Bienvenidos. Antes de empezar, fíjense en la espiral de la derecha. Cada punto que aparece es una sesión de trabajo que dejó algo guardado, y cada punto nuevo se conecta con los anteriores. Al principio crece despacio; luego se acelera. De eso trata esta charla: de cómo hacer que tu trabajo con Claude se acumule en lugar de evaporarse.',
-  'Soy Ivan, Senior Software Engineer en Netflix. Uso Claude Code todos los días y hay una pregunta que no me deja: si los agentes escriben cada vez más código, ¿quién lo va a mantener dentro de un año, y con qué contexto? Esta charla es mi respuesta en progreso.',
+  'Soy Ivan, Senior Software Engineer en Netflix. Uso Claude Code todos los días y hay una pregunta que no me deja: ¿por qué cada sesión empieza de cero, aunque ayer ya hayamos resuelto lo mismo? Esta charla es mi respuesta en progreso.',
   '[~1:00] Levanten la mano si hoy tuvieron una sesión así. Cuarenta minutos con Claude, probaron tres enfoques, encontraron dos bugs, tomaron una decisión difícil, y al final todo quedó en verde. Escriben exit. Clic: y ahora, ¿qué aprendió tu repo? La respuesta casi siempre es: nada. El código se queda, pero todo lo que lo hizo correcto se fue con la sesión.',
   'A la izquierda, lo que sí sobrevive: el diff. A la derecha, lo que se evaporó. La intención, las alternativas descartadas, el caso límite, la convención que tuvimos que corregir tres veces. Eso es deuda de contexto. Y como toda deuda, se paga con intereses: la próxima persona, o el próximo agente, va a redescubrir todo esto desde cero. Probablemente mañana.',
-  'Todos conocemos el bus factor: cuántas personas tendrían que faltar para que el proyecto se detenga. ¿Cuántos tienen en su equipo a esa persona a la que todos le preguntan? Lo que sabe no está en el repo. Ahora agreguen agentes: cada sesión de Claude es como un compañero brillante que trabaja contigo una hora y luego desaparece para siempre. Si no guardaste nada, tu bus factor acaba de bajar otra vez.',
+  '¿Por qué se pierde todo eso? Piensen en cada sesión nueva de Claude como alguien brillante en su primer día en el equipo. Sabe programar, pero no sabe nada de tu repo. Sin memoria, cada sesión vuelve a ser su primer día: empieza de cero y la bolita nunca crece. Todo lo que vimos en el diff, la siguiente sesión lo tiene que redescubrir.',
+  'Todos conocemos el bus factor: cuántas personas tendrían que faltar para que el proyecto se detenga. ¿Cuántos tienen en su equipo a esa persona a la que todos le preguntan? Lo que sabe no está en el repo. Ahora agreguen agentes: ese compañero en su primer día trabaja contigo una hora y luego desaparece para siempre. Si no guardaste nada, tu bus factor acaba de bajar otra vez.',
   'Aquí está la trampa. Claude multiplica tu velocidad: más cambios, más features, más PRs. Clic. Pero si cada sesión olvida, también multiplica el olvido. Más throughput no significa automáticamente más aprendizaje. Sin un sistema, acumulamos deuda de contexto más rápido que nunca.',
   '[~3:30] [Pausa de dos segundos.] Normalmente cada tarea hace la siguiente un poco más difícil: más código, más casos, más cosas que recordar. ¿Qué pasaría si fuera al revés?',
-  'Piensen en cada sesión nueva de Claude como alguien brillante en su primer día en el equipo. Sabe programar, pero no sabe nada de tu repo. Arriba: sin memoria, cada sesión es otra vez su primer día. Siempre empieza de cero, y la bolita nunca crece. Abajo: con compound, cada sesión deja algo. La segunda ya llega con un CLAUDE.md. La tercera con skills. La cuarta con tests y decisiones documentadas. Es una bola de nieve: cada vuelta agrega una capa, y cuanto más grande es, más nieve levanta. Eso es el interés compuesto, sin fórmulas.',
   'A esto se le llama Compound Engineering; el término lo popularizó el equipo de Every. La idea: cada unidad de trabajo debe hacer más fáciles las siguientes. Planear, trabajar y revisar ya lo hacemos. Clic. La cuarta fase, compound, es tomar lo aprendido y devolverlo al repo para que la siguiente vuelta del ciclo empiece desde más arriba. En el centro no está Claude: está tu repositorio.',
+  '¿Se acuerdan del primer día? Ahora, la misma sesión con compound: cada vuelta del ciclo deja algo. La primera llega sin nada. La segunda ya llega con un CLAUDE.md. La tercera con skills. La cuarta con tests y decisiones documentadas. Es una bola de nieve: cada vuelta agrega una capa, y cuanto más grande es, más nieve levanta. Eso es el interés compuesto, sin fórmulas.',
   '[~5:30] Lo mejor: no necesitan instalar nada para empezar. Cada fase tiene un equivalente nativo en Claude Code. Plan mode para planear, subagentes para trabajar con contexto aislado, code review para revisar, y CLAUDE.md, skills y hooks para la fase que importa: compound. Fíjense en la fila de abajo: cada fase deja algo. Ese es el punto.',
   'Shift más Tab y Claude entra en plan mode: investiga, lee el código, propone, pero no toca archivos. El plan captura cuatro cosas: requisitos, restricciones, tradeoffs y criterios de éxito. Fíjense en el paréntesis del punto uno: ese porqué es justo lo que normalmente se pierde. Y la última línea: el plan se guarda en el repo. Un plan es un paquete de contexto que cualquier persona o agente puede abrir mañana. [Ejemplo ilustrativo.]',
-  'Con el plan aprobado, Claude trabaja. El truco aquí son los subagentes: en lugar de que la sesión principal lea dos mil líneas para encontrar algo, delega. Un subagente explora y regresa un resumen. Otro implementa un paso. Otro verifica. Cada uno tiene su propia ventana de contexto, así que la sesión principal llega al final lúcida, no saturada. Se definen en punto claude barra agents, y también son parte del repo.',
-  'Un solo revisor ve lo que ve. Varios revisores, cada uno con su lente, ven mucho más. Y agreguen siempre la lente adversarial: su único trabajo es intentar romper el cambio, como un atacante. Los demás preguntan si el código está bien; este pregunta cómo hacerlo fallar. code-review cubre lo básico; para más, defines subagentes revisores en punto claude barra agents. La meta: que cuando un humano abra el PR, los hallazgos ya estén resueltos. [Salida de ejemplo ilustrativa.]',
-  'Esta es la fase que casi nadie hace, y la que cambia la curva. Cada cosa que aprendiste tiene un lugar. Un bug que regresa se vuelve un test. Un hallazgo de revisión, una regla en CLAUDE.md. Un procedimiento que repites, una skill. Una regla que no puede fallar, un hook. Y una decisión costosa, un ADR: un registro de decisión de arquitectura. Es un archivo corto con el contexto, la decisión y las alternativas descartadas; si la decisión cambia, se escribe uno nuevo. Es justo lo que vimos que se perdía en el diff. La lección deja de vivir en tu cabeza y empieza a vivir en el repo.',
-  '[Caso real, ~1 min] Esto no es teoría. Es de un proyecto personal donde trabajo con Codex, el agente de OpenAI. El mecanismo es el mismo que en Claude Code: AGENTS.md en lugar de CLAUDE.md. 30 de septiembre: una revisión automática encontró que cinco requests de un solo cliente podían bloquear el login de todos los demás. Lo corregimos y quedó un test y un ADR. Clic. Esa misma tarde, una limpieza de documentación borró la carpeta docs, con los ADRs adentro. Clic. Cuatro días después, en una sesión nueva, el agente me dijo: no encontré ADRs existentes. Amnesia total. Los restauramos desde git y agregué una regla: antes de terminar, revisa los ADRs. Clic. Una semana después migré toda la base de datos a PlanetScale. Codex leyó el ADR y la regla de rate limiting sobrevivió intacta. Clic. La memoria no estaba en el agente: el agente la había perdido. Estaba en el repo.',
-  '¿Y dónde guardo cada cosa? Una regla simple. Si Claude debe saberlo siempre: CLAUDE.md. Si es un procedimiento que se usa a veces: una skill, que se carga solo cuando hace falta. Si no puede fallar nunca: un hook, porque es determinista y no depende de que el modelo se acuerde. Y si necesita su propio contexto: un subagente. Lo importante: todo vive en git, así que se revisa en un PR como cualquier otro código. Es memoria del equipo, no de una persona.',
-  'Una advertencia: si cada sesión agrega algo, CLAUDE.md crece hasta volverse ruido que ocupa contexto en cada sesión. Así que compound también se mantiene: mide el tamaño, poda lo duplicado u obsoleto y mueve el detalle a skills. Idealmente, la misma skill de compound lo revisa antes de agregar algo nuevo. [Si vas tarde, pasa este slide rápido.]',
+  'Con el plan aprobado, Claude trabaja y revisa. El truco son los subagentes: en lugar de que la sesión principal lea dos mil líneas para encontrar algo, delega. Uno explora y regresa un resumen. Otro implementa un paso del plan. Y para revisar, varios revisores, cada uno con su lente: seguridad, pruebas, rendimiento. Agreguen siempre la lente adversarial: su único trabajo es intentar romper el cambio, como un atacante. Cada subagente tiene su propia ventana de contexto, así que la sesión principal llega al final lúcida, no saturada. Y fíjense en lo que deja: código probado, hallazgos resueltos antes de que un humano abra el PR, y los subagentes mismos, definidos en punto claude barra agents, que se quedan en el repo para la próxima vez.',
+  'Esta es la fase que casi nadie hace, y la que cambia la curva. Cada cosa que aprendiste tiene un lugar, y cada lugar actúa en un momento distinto. Un bug que regresa se vuelve un test, que corre en cada cambio. Un hallazgo de revisión, una regla en CLAUDE.md, que Claude lee siempre. Un procedimiento que repites, una skill, que se carga solo cuando hace falta. Una regla que no puede fallar, un hook: es determinista y no depende de que el modelo se acuerde. Y una decisión costosa, un ADR: un registro de decisión de arquitectura. Es un archivo corto con el contexto, la decisión y las alternativas descartadas; si la decisión cambia, se escribe uno nuevo. Es justo lo que vimos que se perdía en el diff. Todo vive en git, así que se revisa en un PR como cualquier otro código. Una advertencia, abajo: si cada sesión agrega algo, CLAUDE.md crece hasta volverse ruido. Así que la memoria también se mantiene: mide su tamaño, poda lo duplicado y mueve el detalle a skills. La lección deja de vivir en tu cabeza y empieza a vivir en el repo.',
+  '[Caso real, ~1 min] Esto no es teoría. Es de un proyecto personal donde trabajo con Codex, el agente de OpenAI. El mecanismo es el mismo que en Claude Code: AGENTS.md en lugar de CLAUDE.md. 30 de septiembre: una revisión automática encontró que cinco requests de un solo cliente podían bloquear el login de todos los demás. Lo corregimos y quedó un test y un ADR. Clic. Esa misma tarde, una limpieza de documentación borró la carpeta docs, con los ADRs adentro. Clic. Cuatro días después, en una sesión nueva, el agente me dijo: no encontré ADRs existentes. Amnesia total. Los restauramos desde git y agregué una regla: antes de terminar, revisa los ADRs. Clic. Una semana después migré toda la base de datos a PlanetScale. Codex leyó el ADR y la regla de rate limiting sobrevivió intacta. Clic. La memoria no estaba en el agente: el agente la había perdido. Estaba en git, y de ahí la recuperamos.',
+  'No hay que adoptar todo de golpe. Un escalón por día. Lunes: corran init y tengan su primer CLAUDE.md. Martes: plan mode para todo lo que no sea trivial. Miércoles: code review antes de cada PR. Jueves: su primera skill, del procedimiento que más repiten. Viernes: un hook para la regla que más se rompe. Fíjense que cada columna es más alta que la anterior: así se ve el interés compuesto. Y todos los días, antes de escribir exit, una sola cosa. Es la siguiente slide.',
   '[~11:45] Si se van a llevar una sola cosa de esta charla, que sea esto. Tómenle foto. Al final de cada sesión, antes de escribir exit, pídanle esto a Claude. Es la fase compound en dos líneas. Y cuando lo hayan hecho tres veces, conviértanlo en una skill propia que se llame compound, para que el hábito no dependa de que se acuerden.',
-  'No hay que adoptar todo de golpe. Un escalón por día. Lunes: corran init y tengan su primer CLAUDE.md. Martes: plan mode para todo lo que no sea trivial. Miércoles: code review antes de cada PR. Jueves: su primera skill, del procedimiento que más repiten. Viernes: un hook para la regla que más se rompe. Fíjense que cada columna es más alta que la anterior: así se ve el interés compuesto.',
-  '[~13:30] ¿Se acuerdan de la espiral de la portada? Así se ve después de muchas sesiones que sí dejaron algo. El ROI real de trabajar con agentes no es escribir más código: es construir sistemas que suban la vara después de cada feature. Menos contexto desechable, menor bus factor y un mejor siguiente cambio.',
+  '[~13:30] ¿Se acuerdan de la espiral de la portada? Así se ve después de muchas sesiones que sí dejaron algo. Esa era la promesa del principio: que cada sesión deje tu repo más inteligente que antes. El valor real de trabajar con agentes no es escribir más código: es que cada feature haga más fácil la siguiente. Menos contexto desechable, menor bus factor y un mejor siguiente cambio.',
   '[~14:15 · luego 5 min de Q&A con este slide arriba] Gracias. Aquí están la presentación, mi LinkedIn y mi X, donde estoy como ivanovishado. Dejo este slide arriba durante las preguntas para que todos alcancen a escanear. El concepto de Compound Engineering viene del equipo de Every; si quieren un flujo ya empaquetado, su plugin es un buen punto de partida. Pero todo lo que vimos hoy funciona con Claude Code tal como viene. Abrimos preguntas.',
 ];
 
@@ -4010,21 +3442,19 @@ export default [
   SpeakerSlide,
   HookSlide,
   DiffSlide,
+  FirstDaySlide,
   BusFactorSlide,
   MultiplierSlide,
   QuestionSlide,
-  MathSlide,
   DefinitionSlide,
+  MathSlide,
   ClaudeLoopSlide,
   PlanSlide,
   WorkSlide,
-  ReviewSlide,
   CompoundSlide,
   RealCaseSlide,
-  LayersSlide,
-  PruneSlide,
-  StealSlide,
   WeekSlide,
+  StealSlide,
   CloseSlide,
   OutroSlide,
 ] satisfies Page[];
