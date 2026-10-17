@@ -76,7 +76,7 @@ Path is relative to the project root (the user's `cwd`, the directory that conta
 `updatedAt` is the last time the user navigated. Treat it like a cache:
 
 - **Fresh (under ~5 minutes old)**: trust it. Open `pagePath`, do the work.
-- **Older than ~5 minutes, or older than your last interaction with the user**: confirm with the user before editing. The dev server may not be running; the user may have switched contexts.
+- **Older than ~5 minutes**: confirm with the user before editing. The dev server may not be running; the user may have switched contexts.
 - **Hours/days old**: ignore it. Ask the user which slide they mean.
 
 A *newer* `updatedAt` than the one you saw last turn is the normal signal that the user has moved — switch to the new `slideId` / `pageIndex` / `selection` without asking.
@@ -95,6 +95,7 @@ User: "tighten the spacing on this page"
 3. Read `pagePath` (e.g. `slides/q2-roadmap/index.tsx`).
 4. Identify the page at `pageIndex` in the default-exported array.
 5. Consult the `slide-authoring` skill for spacing rules, then edit that page in place.
+6. To check the result visually, screenshot `s/<slideId>/preview?p=<pageNumber>` on the dev server — see **Previewing a page visually** in `slide-authoring`.
 
 If `current.json` is missing or stale, ask: "Which slide and page should I tighten? The dev server hasn't published a current page recently."
 

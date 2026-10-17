@@ -179,7 +179,7 @@ class Converter(HTMLParser):
         pre, post = '', ''
         el_id = a.get('id')
         if el_id and el_id in self.shared_ids:
-            pre, post = f'<SharedElement id={{{js(el_id)}}}>', '</SharedElement>'
+            pre, post = f'<MorphElement id={{{js(el_id)}}}>', '</MorphElement>'
         if 'data-build-in' in a:
             if not pinned:
                 warn(f'{self.slide_id}: data-build-in on a flow element; revealed with a step but layout may shift')
@@ -259,7 +259,7 @@ class Converter(HTMLParser):
 
 
 HEAD = '''import type { Page, SlideMeta, SlideTransition } from '@open-slide/core';
-import { Step, Steps, unstable_SharedElement as SharedElement } from '@open-slide/core';
+import { MorphElement, Step, Steps } from '@open-slide/core';
 __IMPORTS__
 
 // Ported 1:1 from a Claude Slides artifact__SOURCE__.
@@ -392,9 +392,10 @@ const EASE_IN = 'cubic-bezier(0.4, 0, 1, 1)';
 
 export const transition: SlideTransition = {
   duration: 240,
-  exit: { duration: 200, easing: EASE_IN, keyframes: [{ opacity: 1 }, { opacity: 0 }] },
-  enter: { duration: 240, delay: 40, easing: EASE_OUT, keyframes: [{ opacity: 0 }, { opacity: 1 }] },
-  sharedElements: { duration: 360, easing: EASE_OUT },
+  // Held exit + opacity-only enter, so the morphing elements carry all the motion (open-slide morph rules).
+  exit: { duration: 240, easing: EASE_IN, keyframes: [{ opacity: 1 }, { opacity: 1 }] },
+  enter: { duration: 240, easing: EASE_OUT, keyframes: [{ opacity: 0 }, { opacity: 1 }] },
+  morph: { duration: 480, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' },
 };
 '''
 

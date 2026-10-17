@@ -44,7 +44,7 @@ Knowing this helps when you have to fix something by hand:
 - **`<x-embed>`** becomes a sandboxed `<iframe srcDoc>` with the same box. Inside the editor pane it can take several seconds to appear; that's load time, not a bug.
 - **`<x-shape>` and `<x-connector>`** become the `Shape` and `Connector` components: arrows, diamonds and ellipses, plus straight, elbow, hv and vh routes with heads.
 - **`data-build-in`** becomes `<Steps><Step>`. The Step wrapper is pinned with `inset:0`, so the pinned child keeps its coordinates and adds no flow gap.
-- **`data-transition="magic"`.** An element whose `id` repeats across slides (for example a progress bar) becomes `SharedElement`, and the deck gets a quiet dissolve transition plus `sharedElements`.
+- **`data-transition="magic"`.** An element whose `id` repeats across slides (for example a progress bar) becomes `MorphElement` (open-slide 2; it was `unstable_SharedElement` in 1.x), and the deck gets a held-exit fade transition with `morph`. Read the `slide-authoring` skill's `references/morph.md` before changing it.
 - **`<aside>` speaker notes** become `export const notes`.
 - **Fonts.** Google Fonts from `deck.json` `faces` are injected once in `<head>`. Uploaded font files are not handled; the script warns about them.
 

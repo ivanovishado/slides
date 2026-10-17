@@ -1,86 +1,146 @@
 import type { Page, SlideMeta, SlideTransition } from '@open-slide/core';
-import { Step, Steps, unstable_SharedElement as SharedElement } from '@open-slide/core';
-import busFactor from './assets/bus-factor.png';
-import ivanPhoto from './assets/ivan.jpeg';
-import qrLinkedin from './assets/qr-linkedin.png';
-import qrSlides from './assets/qr-slides.png';
-import qrX from './assets/qr-x.png';
+import { MorphElement, Step, Steps } from '@open-slide/core';
+import imgIvan from './assets/ivan.jpeg';
+import imgQrSlides from './assets/qr-slides.png';
+import imgQrLinkedin from './assets/qr-linkedin.png';
+import imgQrX from './assets/qr-x.png';
+import imgBusFactor from './assets/bus-factor.png';
 
-// Ported 1:1 from the Claude Slides artifact https://claude.ai/artifact/4wHJ17F6PuQBR7tbpo6mZm.
-// The markup keeps the artifact's inline styles; BASE_CSS reproduces that runtime's element defaults.
+// Ported 1:1 from a Claude Slides artifact (https://claude.ai/artifact/4wHJ17F6PuQBR7tbpo6mZm).
+// Markup keeps the artifact's inline styles; BASE_CSS reproduces that runtime's element defaults.
 
-const FONT_HREF =
-  'https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400..700;1,400..700&family=DM+Sans:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap';
+const FONT_HREFS: string[] = [
+  'https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400..700;1,400..700&display=swap',
+  'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..700&display=swap',
+  'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..700&display=swap',
+];
 
 const BASE_CSS = `
-.ccg { position: relative; width: 100%; height: 100%; box-sizing: border-box; overflow: hidden; display: flex; flex-direction: column; }
-.ccg * { box-sizing: border-box; margin: 0; }
-.ccg div { display: flex; flex-direction: column; }
-.ccg h1 { font-size: 96px; font-weight: 600; line-height: 1.1; }
-.ccg h2 { font-size: 64px; font-weight: 600; line-height: 1.15; }
-.ccg h3 { font-size: 44px; font-weight: 600; line-height: 1.2; }
-.ccg p { font-size: 32px; font-weight: 400; line-height: 1.4; }
-.ccg img, .ccg svg { display: block; flex-shrink: 0; }
-.ccg a { color: inherit; text-decoration: none; }
-.ccg hr { border: 0; }
-.ccg [data-osd-step] { position: absolute; inset: 0; pointer-events: none; }
+.osa { position: relative; width: 100%; height: 100%; box-sizing: border-box; overflow: hidden; display: flex; flex-direction: column; }
+.osa * { box-sizing: border-box; margin: 0; }
+.osa div { display: flex; flex-direction: column; }
+.osa h1 { font-size: 96px; font-weight: 600; line-height: 1.1; }
+.osa h2 { font-size: 64px; font-weight: 600; line-height: 1.15; }
+.osa h3 { font-size: 44px; font-weight: 600; line-height: 1.2; }
+.osa p, .osa li { font-size: 32px; font-weight: 400; line-height: 1.4; }
+.osa ul, .osa ol { padding-left: 1.2em; }
+.osa img, .osa svg { display: block; flex-shrink: 0; }
+.osa a { color: inherit; text-decoration: none; }
+.osa hr { border: 0; }
+.osa table { border-collapse: collapse; }
+.osa th, .osa td { padding: 0.35em 0.6em; border: 1px solid currentColor; text-align: left; }
+.osa [data-osd-step] { position: absolute; inset: 0; pointer-events: none; }
 `;
 
 if (typeof document !== 'undefined') {
-  if (!document.getElementById('ccg-webfont')) {
+  FONT_HREFS.forEach((href, i) => {
+    const id = `osa-font-${i}`;
+    if (document.getElementById(id)) return;
     const link = document.createElement('link');
-    link.id = 'ccg-webfont';
+    link.id = id;
     link.rel = 'stylesheet';
-    link.href = FONT_HREF;
+    link.href = href;
     document.head.appendChild(link);
-  }
-  if (!document.getElementById('ccg-base')) {
+  });
+  if (!document.getElementById('osa-base')) {
     const style = document.createElement('style');
-    style.id = 'ccg-base';
+    style.id = 'osa-base';
     style.textContent = BASE_CSS;
     document.head.appendChild(style);
   }
 }
 
-// Live canvas page, sandboxed like the artifact's <x-embed>.
-const Embed = ({ html }: { html: string }) => (
+// The artifact's <x-embed>: a small live page in a sandboxed iframe.
+const Embed = ({ html, box }: { html: string; box: Record<string, string> }) => (
   <iframe
-    title="Espiral de crecimiento compuesto"
+    title="Embed"
     srcDoc={html}
     sandbox="allow-scripts"
-    style={{ position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, border: 0, pointerEvents: 'none' }}
+    style={{ position: 'absolute', border: 0, pointerEvents: 'none', ...box }}
   />
 );
 
-// Block arrow: the head is the last 40% of its length.
-const Arrow = ({ color, width, height }: { color: string; width: number; height: number }) => (
-  <svg width={width} height={height} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-    <polygon points="0,30 60,30 60,0 100,50 60,100 60,70 0,70" fill={color} />
-  </svg>
-);
+// The artifact's <x-shape>: each kind fills its box; block arrows put the head in the last 40%.
+const SHAPES: Record<string, string> = {
+  'arrow-right': '0,30 60,30 60,0 100,50 60,100 60,70 0,70',
+  'arrow-left': '100,30 40,30 40,0 0,50 40,100 40,70 100,70',
+  'arrow-down': '30,0 70,0 70,60 100,60 50,100 0,60 30,60',
+  'arrow-up': '30,100 70,100 70,40 100,40 50,0 0,40 30,40',
+  diamond: '50,0 100,50 50,100 0,50',
+};
+const Shape = ({ kind, color, width, height }: { kind: string; color: string; width: number; height: number }) => {
+  if (kind === 'ellipse' || kind === 'rect' || kind === 'rounded' || kind === 'line') {
+    const radius = kind === 'ellipse' ? '50%' : kind === 'rounded' ? 16 : 0;
+    const h = kind === 'line' ? 2 : height;
+    return (
+      <span style={{ display: 'block', flexShrink: 0, width, height: h, background: color, borderRadius: radius }} />
+    );
+  }
+  return (
+    <svg width={width} height={height} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <polygon points={SHAPES[kind] ?? SHAPES['arrow-right']} fill={color} />
+    </svg>
+  );
+};
 
-// Line with a filled head at the end, in its host's coordinates. "elbow" = across, down, across.
+// The artifact's <x-connector>, in its host's coordinates. elbow = across, down, across; hv/vh = one bend.
 const Connector = ({
   x1,
   y1,
   x2,
   y2,
   route,
+  head,
   color,
   stroke,
+  dashed,
 }: {
   x1: number;
   y1: number;
   x2: number;
   y2: number;
   route: string;
+  head: string;
   color: string;
   stroke: number;
+  dashed: boolean;
 }) => {
-  const head = stroke * 5;
-  const end = x2 - head;
-  const mid = (x1 + x2) / 2;
-  const d = route === 'elbow' ? `M${x1} ${y1} H${mid} V${y2} H${end}` : `M${x1} ${y1} L${end} ${y2}`;
+  const size = stroke * 5;
+  const pts: [number, number][] =
+    route === 'elbow'
+      ? [
+          [x1, y1],
+          [(x1 + x2) / 2, y1],
+          [(x1 + x2) / 2, y2],
+          [x2, y2],
+        ]
+      : route === 'hv'
+        ? [
+            [x1, y1],
+            [x2, y1],
+            [x2, y2],
+          ]
+        : route === 'vh'
+          ? [
+              [x1, y1],
+              [x1, y2],
+              [x2, y2],
+            ]
+          : [
+              [x1, y1],
+              [x2, y2],
+            ];
+  const arrow = (tip: [number, number], from: [number, number]) => {
+    const len = Math.hypot(tip[0] - from[0], tip[1] - from[1]) || 1;
+    const ux = (tip[0] - from[0]) / len;
+    const uy = (tip[1] - from[1]) / len;
+    const bx = tip[0] - ux * size;
+    const by = tip[1] - uy * size;
+    const w = size * 0.6;
+    return `${tip[0]},${tip[1]} ${bx - uy * w},${by + ux * w} ${bx + uy * w},${by - ux * w}`;
+  };
+  const line = pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x} ${y}`).join(' ');
+  const n = pts.length;
   return (
     <svg
       aria-hidden="true"
@@ -94,8 +154,15 @@ const Connector = ({
         pointerEvents: 'none',
       }}
     >
-      <path d={d} fill="none" stroke={color} strokeWidth={stroke} />
-      <polygon points={`${x2},${y2} ${end},${y2 - head * 0.6} ${end},${y2 + head * 0.6}`} fill={color} />
+      <path
+        d={line}
+        fill="none"
+        stroke={color}
+        strokeWidth={stroke}
+        strokeDasharray={dashed ? `${stroke * 3} ${stroke * 2}` : undefined}
+      />
+      {head !== 'none' && <polygon points={arrow(pts[n - 1], pts[n - 2])} fill={color} />}
+      {head === 'both' && <polygon points={arrow(pts[0], pts[1])} fill={color} />}
     </svg>
   );
 };
@@ -105,19 +172,20 @@ const EASE_IN = 'cubic-bezier(0.4, 0, 1, 1)';
 
 export const transition: SlideTransition = {
   duration: 240,
-  exit: { duration: 200, easing: EASE_IN, keyframes: [{ opacity: 1 }, { opacity: 0 }] },
-  enter: { duration: 240, delay: 40, easing: EASE_OUT, keyframes: [{ opacity: 0 }, { opacity: 1 }] },
-  sharedElements: { duration: 360, easing: EASE_OUT },
+  // Held exit + opacity-only enter, so the morphing elements carry all the motion (open-slide morph rules).
+  exit: { duration: 240, easing: EASE_IN, keyframes: [{ opacity: 1 }, { opacity: 1 }] },
+  enter: { duration: 240, easing: EASE_OUT, keyframes: [{ opacity: 0 }, { opacity: 1 }] },
+  morph: { duration: 480, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' },
 };
 
-const SPIRAL_COVER =
+const EMBED_COVER =
   "<!doctype html><html><head><meta charset=\"utf-8\"></head><body style=\"margin:0;background:#141210;overflow:hidden\"><canvas id=\"c\" style=\"display:block;width:100vw;height:100vh\"></canvas><script>\nconst c=document.getElementById('c'),g=c.getContext('2d');\nlet W=1,H=1,D=1;\nfunction rs(){D=devicePixelRatio||1;W=innerWidth;H=innerHeight;c.width=W*D;c.height=H*D;}\nrs();addEventListener('resize',rs);\nconst N=760,GA=Math.PI*(3-Math.sqrt(5)),CX=1390,CY=540,K=16.5,F=[13,21,34],RATE=2.2,EXP=1.6,START=0;\nconst P=[];for(let i=0;N>i;i++){P.push([K*Math.sqrt(i+1),i*GA,Math.pow(i,1/EXP)/RATE]);}\nconst T0=performance.now()/1000-START;\nfunction f(){\nconst t=performance.now()/1000-T0,s=Math.min(W/1920,H/1080);\ng.setTransform(D*s,0,0,D*s,D*(W-1920*s)/2,D*(H-1080*s)/2);\ng.fillStyle='#141210';g.fillRect(-400,-400,2720,1880);\nconst rot=t*0.03,wave=(t*260)%1700;\nconst pos=P.map(p=>[CX+p[0]*Math.cos(p[1]+rot),CY+p[0]*Math.sin(p[1]+rot)]);\nconst rg=g.createRadialGradient(CX,CY,0,CX,CY,560);rg.addColorStop(0,'rgba(224,120,79,0.12)');rg.addColorStop(1,'rgba(224,120,79,0)');g.fillStyle=rg;g.fillRect(CX-560,CY-560,1120,1120);\ng.lineWidth=1.2;\nfor(let i=0;N>i;i++){const age=t-P[i][2];if(0>age)break;\nfor(const k of F){const j=i-k;if(0>j)continue;\nconst a=0.08+0.6*Math.exp(-age*1.2);\ng.strokeStyle='rgba(224,120,79,'+a.toFixed(3)+')';\ng.beginPath();g.moveTo(pos[i][0],pos[i][1]);g.lineTo(pos[j][0],pos[j][1]);g.stroke();}}\nfor(let i=0;N>i;i++){const age=t-P[i][2];if(0>age)break;\nconst w=Math.exp(-Math.pow(P[i][0]-wave,2)/3200),fr=Math.exp(-age*2);\nconst r=1.2+Math.min(3.2,age*0.35)+w*2.6;\ng.fillStyle='rgba(244,239,230,'+Math.min(1,0.38+0.5*w+0.3*fr).toFixed(3)+')';\ng.beginPath();g.arc(pos[i][0],pos[i][1],r,0,6.283);g.fill();\nif(fr>0.04){g.strokeStyle='rgba(224,120,79,'+fr.toFixed(3)+')';g.lineWidth=1.5;g.beginPath();g.arc(pos[i][0],pos[i][1],r+4+16*(1-fr),0,6.283);g.stroke();g.lineWidth=1.2;}}\nconst lg=g.createLinearGradient(0,0,1150,0);lg.addColorStop(0,'rgba(20,18,16,0.97)');lg.addColorStop(0.55,'rgba(20,18,16,0.8)');lg.addColorStop(1,'rgba(20,18,16,0)');g.fillStyle=lg;g.fillRect(-400,-400,1550,1880);\nrequestAnimationFrame(f);}\nrequestAnimationFrame(f);\n</script></body></html>";
-const SPIRAL_CLOSE =
+const EMBED_CLOSE =
   "<!doctype html><html><head><meta charset=\"utf-8\"></head><body style=\"margin:0;background:#141210;overflow:hidden\"><canvas id=\"c\" style=\"display:block;width:100vw;height:100vh\"></canvas><script>\nconst c=document.getElementById('c'),g=c.getContext('2d');\nlet W=1,H=1,D=1;\nfunction rs(){D=devicePixelRatio||1;W=innerWidth;H=innerHeight;c.width=W*D;c.height=H*D;}\nrs();addEventListener('resize',rs);\nconst N=760,GA=Math.PI*(3-Math.sqrt(5)),CX=1390,CY=540,K=16.5,F=[13,21,34],RATE=2.2,EXP=1.6,START=60;\nconst P=[];for(let i=0;N>i;i++){P.push([K*Math.sqrt(i+1),i*GA,Math.pow(i,1/EXP)/RATE]);}\nconst T0=performance.now()/1000-START;\nfunction f(){\nconst t=performance.now()/1000-T0,s=Math.min(W/1920,H/1080);\ng.setTransform(D*s,0,0,D*s,D*(W-1920*s)/2,D*(H-1080*s)/2);\ng.fillStyle='#141210';g.fillRect(-400,-400,2720,1880);\nconst rot=t*0.03,wave=(t*260)%1700;\nconst pos=P.map(p=>[CX+p[0]*Math.cos(p[1]+rot),CY+p[0]*Math.sin(p[1]+rot)]);\nconst rg=g.createRadialGradient(CX,CY,0,CX,CY,560);rg.addColorStop(0,'rgba(224,120,79,0.16)');rg.addColorStop(1,'rgba(224,120,79,0)');g.fillStyle=rg;g.fillRect(CX-560,CY-560,1120,1120);\ng.lineWidth=1.2;\nfor(let i=0;N>i;i++){const age=t-P[i][2];if(0>age)break;\nfor(const k of F){const j=i-k;if(0>j)continue;\nconst w=Math.exp(-Math.pow(P[i][0]-wave,2)/6000);\nconst a=0.1+0.35*w;\ng.strokeStyle='rgba(224,120,79,'+a.toFixed(3)+')';\ng.beginPath();g.moveTo(pos[i][0],pos[i][1]);g.lineTo(pos[j][0],pos[j][1]);g.stroke();}}\nfor(let i=0;N>i;i++){const age=t-P[i][2];if(0>age)break;\nconst w=Math.exp(-Math.pow(P[i][0]-wave,2)/3200);\nconst r=1.2+Math.min(3.2,age*0.35)+w*2.6;\ng.fillStyle='rgba(244,239,230,'+Math.min(1,0.45+0.5*w).toFixed(3)+')';\ng.beginPath();g.arc(pos[i][0],pos[i][1],r,0,6.283);g.fill();}\nconst lg=g.createLinearGradient(0,0,1150,0);lg.addColorStop(0,'rgba(20,18,16,0.97)');lg.addColorStop(0.55,'rgba(20,18,16,0.8)');lg.addColorStop(1,'rgba(20,18,16,0)');g.fillStyle=lg;g.fillRect(-400,-400,1550,1880);\nrequestAnimationFrame(f);}\nrequestAnimationFrame(f);\n</script></body></html>";
 
 const CoverSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#141210',
       color: '#F4EFE6',
@@ -128,7 +196,7 @@ const CoverSlide: Page = () => (
       justifyContent: 'space-between',
     }}
   >
-    <Embed html={SPIRAL_COVER} />
+    <Embed html={EMBED_COVER} box={{ left: '0', top: '0', width: '1920px', height: '1080px' }} />
     <p
       style={{
         position: 'relative',
@@ -167,17 +235,17 @@ const CoverSlide: Page = () => (
         {'Senior Software Engineer · Netflix'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '96px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '91px', height: '6px', background: '#E0784F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const SpeakerSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#F4EFE6',
       color: '#1F1D1A',
@@ -190,8 +258,8 @@ const SpeakerSlide: Page = () => (
     }}
   >
     <img
-      src={ivanPhoto}
-      alt="Foto de Ivan Galaviz"
+      src={imgIvan}
+      alt={'Foto de Ivan Galaviz'}
       style={{ position: 'relative', width: '600px', height: '600px', objectFit: 'cover', borderRadius: '300px' }}
     />
     <div style={{ position: 'relative', flex: '1', display: 'flex', flexDirection: 'column', gap: '32px' }}>
@@ -250,20 +318,20 @@ const SpeakerSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'02 / 20'}
+        {'02 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '192px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '183px', height: '6px', background: '#B5502F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const HookSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#141210',
       color: '#F4EFE6',
@@ -364,20 +432,20 @@ const HookSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'03 / 20'}
+        {'03 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '288px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '274px', height: '6px', background: '#E0784F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const DiffSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#F4EFE6',
       color: '#1F1D1A',
@@ -495,20 +563,20 @@ const DiffSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'04 / 20'}
+        {'04 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '384px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '366px', height: '6px', background: '#B5502F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const BusFactorSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#F7F3DD',
       color: '#1F1D1A',
@@ -519,8 +587,10 @@ const BusFactorSlide: Page = () => (
     }}
   >
     <img
-      src={busFactor}
-      alt="Ilustración del bus factor: una persona atropellada por un autobús y otra que exclama que nadie más sabía la contraseña"
+      src={imgBusFactor}
+      alt={
+        'Ilustración del bus factor: una persona atropellada por un autobús y otra que exclama que nadie más sabía la contraseña'
+      }
       style={{ position: 'relative', width: '1080px', height: '1080px', objectFit: 'cover' }}
     />
     <div
@@ -582,20 +652,20 @@ const BusFactorSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'05 / 20'}
+        {'05 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '480px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '457px', height: '6px', background: '#B5502F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const MultiplierSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#141210',
       color: '#F4EFE6',
@@ -673,20 +743,20 @@ const MultiplierSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'06 / 20'}
+        {'06 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '576px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '549px', height: '6px', background: '#E0784F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const QuestionSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#F4EFE6',
       color: '#1F1D1A',
@@ -743,20 +813,20 @@ const QuestionSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'07 / 20'}
+        {'07 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '672px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '640px', height: '6px', background: '#B5502F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const MathSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       display: 'flex',
       flexDirection: 'column',
@@ -1063,29 +1133,29 @@ const MathSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#fbf8f2' }}
       >
-        {'08 / 20'}
+        {'08 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
         style={{
           position: 'absolute',
           top: '0',
           left: '0',
-          width: '768px',
+          width: '731px',
           height: '6px',
           display: 'flex',
           flexDirection: 'column',
           background: '#fbf8f2',
         }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const DefinitionSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#141210',
       color: '#F4EFE6',
@@ -1127,19 +1197,27 @@ const DefinitionSlide: Page = () => (
     </div>
     <div style={{ position: 'relative', width: '760px', height: '760px' }}>
       <svg
-        aria-label="Ciclo: Planear, Trabajar, Revisar, Compound, alrededor del repositorio"
-        width="760"
-        height="760"
-        viewBox="0 0 760 760"
+        aria-label={'Ciclo: Planear, Trabajar, Revisar, Compound, alrededor del repositorio'}
+        width={'760'}
+        height={'760'}
+        viewBox={'0 0 760 760'}
         style={{ position: 'absolute', left: '0', top: '0', width: '760px', height: '760px' }}
       >
-        <circle cx="380" cy="380" r="330" fill="none" stroke="#2A2622" strokeWidth="1" />
-        <circle cx="380" cy="380" r="260" fill="none" stroke="#4A453E" strokeWidth="2" strokeDasharray="4 10" />
-        <circle cx="380" cy="380" r="150" fill="#1E1B18" stroke="#34302B" strokeWidth="1" />
-        <polygon points="574,206 547,199 567,179" fill="#E0784F" />
-        <polygon points="554,574 561,547 581,567" fill="#E0784F" />
-        <polygon points="186,554 213,561 193,581" fill="#E0784F" />
-        <polygon points="206,186 199,213 179,193" fill="#E0784F" />
+        <circle cx={'380'} cy={'380'} r={'330'} fill={'none'} stroke={'#2A2622'} strokeWidth={'1'} />
+        <circle
+          cx={'380'}
+          cy={'380'}
+          r={'260'}
+          fill={'none'}
+          stroke={'#4A453E'}
+          strokeWidth={'2'}
+          strokeDasharray={'4 10'}
+        />
+        <circle cx={'380'} cy={'380'} r={'150'} fill={'#1E1B18'} stroke={'#34302B'} strokeWidth={'1'} />
+        <polygon points={'574,206 547,199 567,179'} fill={'#E0784F'} />
+        <polygon points={'554,574 561,547 581,567'} fill={'#E0784F'} />
+        <polygon points={'186,554 213,561 193,581'} fill={'#E0784F'} />
+        <polygon points={'206,186 199,213 179,193'} fill={'#E0784F'} />
       </svg>
       <p
         style={{
@@ -1267,20 +1345,20 @@ const DefinitionSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'09 / 20'}
+        {'09 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '864px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '823px', height: '6px', background: '#E0784F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const ClaudeLoopSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#F4EFE6',
       color: '#1F1D1A',
@@ -1364,7 +1442,7 @@ const ClaudeLoopSlide: Page = () => (
         </p>
         <p style={{ fontSize: '32px', fontWeight: '600', color: '#1F1D1A' }}>{'un plan revisable'}</p>
       </div>
-      <Arrow color="#B5502F" width={32} height={16} />
+      <Shape kind={'arrow-right'} color={'#B5502F'} width={32} height={16} />
       <div
         style={{
           flex: '1',
@@ -1417,7 +1495,7 @@ const ClaudeLoopSlide: Page = () => (
         </p>
         <p style={{ fontSize: '32px', fontWeight: '600', color: '#1F1D1A' }}>{'código y pruebas'}</p>
       </div>
-      <Arrow color="#B5502F" width={32} height={16} />
+      <Shape kind={'arrow-right'} color={'#B5502F'} width={32} height={16} />
       <div
         style={{
           flex: '1',
@@ -1470,7 +1548,7 @@ const ClaudeLoopSlide: Page = () => (
         </p>
         <p style={{ fontSize: '32px', fontWeight: '600', color: '#1F1D1A' }}>{'hallazgos resueltos'}</p>
       </div>
-      <Arrow color="#B5502F" width={32} height={16} />
+      <Shape kind={'arrow-right'} color={'#B5502F'} width={32} height={16} />
       <div
         style={{
           flex: '1',
@@ -1542,20 +1620,20 @@ const ClaudeLoopSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'10 / 20'}
+        {'10 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '960px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '914px', height: '6px', background: '#B5502F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const PlanSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#141210',
       color: '#F4EFE6',
@@ -1736,20 +1814,20 @@ const PlanSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'11 / 20'}
+        {'11 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1056px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1006px', height: '6px', background: '#E0784F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const WorkSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#F4EFE6',
       color: '#1F1D1A',
@@ -1781,9 +1859,39 @@ const WorkSlide: Page = () => (
       </h2>
     </div>
     <div style={{ position: 'relative', width: '1664px', height: '460px' }}>
-      <Connector x1={520} y1={230} x2={820} y2={67} route="elbow" color="#B5502F" stroke={3} />
-      <Connector x1={520} y1={230} x2={820} y2={230} route="straight" color="#B5502F" stroke={3} />
-      <Connector x1={520} y1={230} x2={820} y2={393} route="elbow" color="#B5502F" stroke={3} />
+      <Connector
+        x1={520.0}
+        y1={230.0}
+        x2={820.0}
+        y2={67.0}
+        route={'elbow'}
+        head={'end'}
+        color={'#B5502F'}
+        stroke={3.0}
+        dashed={false}
+      />
+      <Connector
+        x1={520.0}
+        y1={230.0}
+        x2={820.0}
+        y2={230.0}
+        route={'straight'}
+        head={'end'}
+        color={'#B5502F'}
+        stroke={3.0}
+        dashed={false}
+      />
+      <Connector
+        x1={520.0}
+        y1={230.0}
+        x2={820.0}
+        y2={393.0}
+        route={'elbow'}
+        head={'end'}
+        color={'#B5502F'}
+        stroke={3.0}
+        dashed={false}
+      />
       <div
         style={{
           position: 'absolute',
@@ -1947,20 +2055,20 @@ const WorkSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'12 / 20'}
+        {'12 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1152px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1097px', height: '6px', background: '#B5502F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const ReviewSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#F4EFE6',
       color: '#1F1D1A',
@@ -2255,20 +2363,20 @@ const ReviewSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'13 / 20'}
+        {'13 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1248px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1189px', height: '6px', background: '#B5502F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const CompoundSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#141210',
       color: '#F4EFE6',
@@ -2311,7 +2419,7 @@ const CompoundSlide: Page = () => (
         }}
       >
         <p style={{ width: '520px', fontSize: '32px', color: '#A39A8C' }}>{'Un bug que regresa'}</p>
-        <Arrow color="#E0784F" width={48} height={24} />
+        <Shape kind={'arrow-right'} color={'#E0784F'} width={48} height={24} />
         <p
           style={{
             width: '480px',
@@ -2346,7 +2454,7 @@ const CompoundSlide: Page = () => (
         }}
       >
         <p style={{ width: '520px', fontSize: '32px', color: '#A39A8C' }}>{'Un hallazgo de revisión'}</p>
-        <Arrow color="#E0784F" width={48} height={24} />
+        <Shape kind={'arrow-right'} color={'#E0784F'} width={48} height={24} />
         <p
           style={{
             width: '480px',
@@ -2381,7 +2489,7 @@ const CompoundSlide: Page = () => (
         }}
       >
         <p style={{ width: '520px', fontSize: '32px', color: '#A39A8C' }}>{'Un procedimiento que repites'}</p>
-        <Arrow color="#E0784F" width={48} height={24} />
+        <Shape kind={'arrow-right'} color={'#E0784F'} width={48} height={24} />
         <p
           style={{
             width: '480px',
@@ -2416,7 +2524,7 @@ const CompoundSlide: Page = () => (
         }}
       >
         <p style={{ width: '520px', fontSize: '32px', color: '#A39A8C' }}>{'Una regla que no puede fallar'}</p>
-        <Arrow color="#E0784F" width={48} height={24} />
+        <Shape kind={'arrow-right'} color={'#E0784F'} width={48} height={24} />
         <p
           style={{
             width: '480px',
@@ -2452,7 +2560,7 @@ const CompoundSlide: Page = () => (
         }}
       >
         <p style={{ width: '520px', fontSize: '32px', color: '#A39A8C' }}>{'Una decisión costosa'}</p>
-        <Arrow color="#E0784F" width={48} height={24} />
+        <Shape kind={'arrow-right'} color={'#E0784F'} width={48} height={24} />
         <div style={{ width: '480px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
           <p
             style={{
@@ -2502,20 +2610,319 @@ const CompoundSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'14 / 20'}
+        {'14 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1344px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1280px', height: '6px', background: '#E0784F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
+  </div>
+);
+
+const RealCaseSlide: Page = () => (
+  <div
+    className="osa"
+    style={{
+      background: '#141210',
+      color: '#F4EFE6',
+      fontFamily: "'DM Sans', Arial, sans-serif",
+      padding: '128px 128px 160px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '16px',
+    }}
+  >
+    <p
+      style={{
+        position: 'relative',
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: '24px',
+        letterSpacing: '4px',
+        color: '#E0784F',
+      }}
+    >
+      {'CASO REAL · PROYECTO PERSONAL CON CODEX'}
+    </p>
+    <h2
+      style={{
+        position: 'relative',
+        fontFamily: "'Source Serif 4', Georgia, serif",
+        fontSize: '72px',
+        fontWeight: '400',
+        lineHeight: '1.1',
+        letterSpacing: '-1px',
+        color: '#F4EFE6',
+      }}
+    >
+      {'Esto me pasó hace unas semanas'}
+    </h2>
+    <div
+      style={{
+        position: 'absolute',
+        left: '128px',
+        top: '347px',
+        width: '1664px',
+        height: '2px',
+        background: '#34302B',
+      }}
+    ></div>
+    <div
+      style={{
+        position: 'absolute',
+        left: '128px',
+        top: '332px',
+        width: '380px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+      }}
+    >
+      <div style={{ width: '32px', height: '32px', borderRadius: '16px', background: '#E0784F' }}></div>
+      <p
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#E0784F' }}
+      >
+        {'30 SEP · MADRUGADA'}
+      </p>
+      <h3
+        style={{
+          fontFamily: "'Source Serif 4', Georgia, serif",
+          fontSize: '32px',
+          fontWeight: '400',
+          lineHeight: '1.2',
+          color: '#F4EFE6',
+        }}
+      >
+        {'Una revisión atrapa un bug'}
+      </h3>
+      <p style={{ fontSize: '26px', lineHeight: '1.4', color: '#CFC6B8' }}>
+        {'5 requests de un cliente bloqueaban el login de todos los demás.'}
+      </p>
+      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#9CC59A' }}>
+        {'+ test + ADR 0002'}
+      </p>
+    </div>
+    <Steps>
+      <Step duration={360}>
+        <div
+          style={{
+            position: 'absolute',
+            left: '556px',
+            top: '332px',
+            width: '380px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+          }}
+        >
+          <div
+            style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '16px',
+              background: '#141210',
+              border: '3px solid #8F877B',
+            }}
+          ></div>
+          <p
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '24px',
+              letterSpacing: '2px',
+              color: '#8F877B',
+            }}
+          >
+            {'30 SEP · 16:44'}
+          </p>
+          <h3
+            style={{
+              fontFamily: "'Source Serif 4', Georgia, serif",
+              fontSize: '32px',
+              fontWeight: '400',
+              lineHeight: '1.2',
+              color: '#F4EFE6',
+            }}
+          >
+            {'Una limpieza borra docs/'}
+          </h3>
+          <p style={{ fontSize: '26px', lineHeight: '1.4', color: '#CFC6B8' }}>
+            {'Los ADRs desaparecen del repo, junto con el porqué del fix.'}
+          </p>
+          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#E0784F' }}>{'− 3 ADRs'}</p>
+        </div>
+      </Step>
+    </Steps>
+    <Steps>
+      <Step duration={360}>
+        <div
+          style={{
+            position: 'absolute',
+            left: '984px',
+            top: '332px',
+            width: '380px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+          }}
+        >
+          <div
+            style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '16px',
+              background: '#141210',
+              border: '3px solid #8F877B',
+            }}
+          ></div>
+          <p
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '24px',
+              letterSpacing: '2px',
+              color: '#8F877B',
+            }}
+          >
+            {'4 OCT · SESIÓN NUEVA'}
+          </p>
+          <h3
+            style={{
+              fontFamily: "'Source Serif 4', Georgia, serif",
+              fontSize: '32px',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              lineHeight: '1.2',
+              color: '#E0784F',
+            }}
+          >
+            {'“No encontré ADRs existentes.”'}
+          </h3>
+          <p style={{ fontSize: '26px', lineHeight: '1.4', color: '#CFC6B8' }}>
+            {'Se restauran desde git y nace la regla: revisa los ADRs antes de terminar.'}
+          </p>
+          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#9CC59A' }}>
+            {'+ AGENTS.md'}
+          </p>
+        </div>
+      </Step>
+    </Steps>
+    <Steps>
+      <Step duration={360}>
+        <div
+          style={{
+            position: 'absolute',
+            left: '1412px',
+            top: '332px',
+            width: '380px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+          }}
+        >
+          <div
+            style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '16px',
+              background: '#E0784F',
+              boxShadow: '0 0 32px rgba(224,120,79,0.7)',
+            }}
+          ></div>
+          <p
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '24px',
+              letterSpacing: '2px',
+              color: '#E0784F',
+            }}
+          >
+            {'12 OCT'}
+          </p>
+          <h3
+            style={{
+              fontFamily: "'Source Serif 4', Georgia, serif",
+              fontSize: '32px',
+              fontWeight: '400',
+              lineHeight: '1.2',
+              color: '#F4EFE6',
+            }}
+          >
+            {'Migro toda la base de datos'}
+          </h3>
+          <p style={{ fontSize: '26px', lineHeight: '1.4', color: '#CFC6B8' }}>
+            {'D1 → PlanetScale. Codex lee el ADR y la regla sobrevive intacta.'}
+          </p>
+          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', color: '#9CC59A' }}>
+            {'✓ cf-connecting-ip'}
+          </p>
+        </div>
+      </Step>
+    </Steps>
+    <Steps>
+      <Step duration={360}>
+        <div
+          style={{
+            position: 'absolute',
+            left: '128px',
+            top: '712px',
+            width: '1664px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px',
+            borderTop: '1px solid #34302B',
+            padding: '28px 0 0 0',
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "'Source Serif 4', Georgia, serif",
+              fontSize: '72px',
+              fontWeight: '400',
+              lineHeight: '1.1',
+              letterSpacing: '-1px',
+              color: '#F4EFE6',
+            }}
+          >
+            {'La memoria no estaba en el agente.'}
+            <br />
+            <i style={{ color: '#E0784F' }}>{'Estaba en el repo.'}</i>
+          </p>
+        </div>
+      </Step>
+    </Steps>
+    <div
+      style={{
+        position: 'absolute',
+        left: '128px',
+        right: '128px',
+        bottom: '64px',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      }}
+    >
+      <p
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
+      >
+        {'COMPOUND ENGINEERING'}
+      </p>
+      <p
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
+      >
+        {'15 / 21'}
+      </p>
+    </div>
+    <MorphElement id={'progress'}>
+      <div
+        style={{ position: 'absolute', left: '0', top: '0', width: '1371px', height: '6px', background: '#E0784F' }}
+      ></div>
+    </MorphElement>
   </div>
 );
 
 const LayersSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#F4EFE6',
       color: '#1F1D1A',
@@ -2742,20 +3149,20 @@ const LayersSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'15 / 20'}
+        {'16 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1440px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1463px', height: '6px', background: '#B5502F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const PruneSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#141210',
       color: '#F4EFE6',
@@ -2952,20 +3359,20 @@ const PruneSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'16 / 20'}
+        {'17 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1536px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1554px', height: '6px', background: '#E0784F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const StealSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#F4EFE6',
       color: '#1F1D1A',
@@ -3085,20 +3492,20 @@ const StealSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'17 / 20'}
+        {'18 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1632px', height: '6px', background: '#B5502F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1646px', height: '6px', background: '#B5502F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const WeekSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#141210',
       color: '#F4EFE6',
@@ -3285,20 +3692,20 @@ const WeekSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'18 / 20'}
+        {'19 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1728px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1737px', height: '6px', background: '#E0784F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const CloseSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#141210',
       color: '#F4EFE6',
@@ -3310,7 +3717,7 @@ const CloseSlide: Page = () => (
       gap: '48px',
     }}
   >
-    <Embed html={SPIRAL_CLOSE} />
+    <Embed html={EMBED_CLOSE} box={{ left: '0', top: '0', width: '1920px', height: '1080px' }} />
     <p
       style={{
         position: 'relative',
@@ -3372,20 +3779,20 @@ const CloseSlide: Page = () => (
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#8F877B' }}
       >
-        {'19 / 20'}
+        {'20 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
-        style={{ position: 'absolute', left: '0', top: '0', width: '1824px', height: '6px', background: '#E0784F' }}
+        style={{ position: 'absolute', left: '0', top: '0', width: '1829px', height: '6px', background: '#E0784F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
 const OutroSlide: Page = () => (
   <div
-    className="ccg"
+    className="osa"
     style={{
       background: '#F4EFE6',
       color: '#1F1D1A',
@@ -3459,8 +3866,8 @@ const OutroSlide: Page = () => (
         }}
       >
         <img
-          src={qrSlides}
-          alt="Código QR de la presentación en ivanovishado.dev"
+          src={imgQrSlides}
+          alt={'Código QR de la presentación en ivanovishado.dev'}
           style={{ width: '470px', height: '470px', objectFit: 'contain' }}
         />
         <p
@@ -3489,8 +3896,8 @@ const OutroSlide: Page = () => (
         }}
       >
         <img
-          src={qrLinkedin}
-          alt="Código QR del perfil de LinkedIn"
+          src={imgQrLinkedin}
+          alt={'Código QR del perfil de LinkedIn'}
           style={{ width: '470px', height: '470px', objectFit: 'contain' }}
         />
         <p
@@ -3519,8 +3926,8 @@ const OutroSlide: Page = () => (
         }}
       >
         <img
-          src={qrX}
-          alt="Código QR del perfil de X @ivanovishado"
+          src={imgQrX}
+          alt={'Código QR del perfil de X @ivanovishado'}
           style={{ width: '470px', height: '470px', objectFit: 'contain' }}
         />
         <p
@@ -3551,21 +3958,21 @@ const OutroSlide: Page = () => (
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
         {'CONCEPTO ORIGINAL: '}
-        <a href="https://every.to/guides/compound-engineering" target="_blank" rel="noreferrer">
+        <a href={'https://every.to/guides/compound-engineering'} target="_blank" rel="noreferrer">
           <span style={{ color: '#B5502F' }}>{'COMPOUND ENGINEERING, DE EVERY'}</span>
         </a>
       </p>
       <p
         style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '24px', letterSpacing: '2px', color: '#6E665C' }}
       >
-        {'20 / 20'}
+        {'21 / 21'}
       </p>
     </div>
-    <SharedElement id="progress">
+    <MorphElement id={'progress'}>
       <div
         style={{ position: 'absolute', left: '0', top: '0', width: '1920px', height: '6px', background: '#B5502F' }}
       ></div>
-    </SharedElement>
+    </MorphElement>
   </div>
 );
 
@@ -3584,12 +3991,13 @@ export const notes = [
   'Con el plan aprobado, Claude trabaja. El truco aquí son los subagentes: en lugar de que la sesión principal lea dos mil líneas para encontrar algo, delega. Un subagente explora y regresa un resumen. Otro implementa un paso. Otro verifica. Cada uno tiene su propia ventana de contexto, así que la sesión principal llega al final lúcida, no saturada. Se definen en punto claude barra agents, y también son parte del repo.',
   'Un solo revisor ve lo que ve. Varios revisores, cada uno con su lente, ven mucho más. Y agreguen siempre la lente adversarial: su único trabajo es intentar romper el cambio, como un atacante. Los demás preguntan si el código está bien; este pregunta cómo hacerlo fallar. code-review cubre lo básico; para más, defines subagentes revisores en punto claude barra agents. La meta: que cuando un humano abra el PR, los hallazgos ya estén resueltos. [Salida de ejemplo ilustrativa.]',
   'Esta es la fase que casi nadie hace, y la que cambia la curva. Cada cosa que aprendiste tiene un lugar. Un bug que regresa se vuelve un test. Un hallazgo de revisión, una regla en CLAUDE.md. Un procedimiento que repites, una skill. Una regla que no puede fallar, un hook. Y una decisión costosa, un ADR: un registro de decisión de arquitectura. Es un archivo corto con el contexto, la decisión y las alternativas descartadas; si la decisión cambia, se escribe uno nuevo. Es justo lo que vimos que se perdía en el diff. La lección deja de vivir en tu cabeza y empieza a vivir en el repo.',
+  '[Caso real, ~1 min] Esto no es teoría. Es de un proyecto personal donde trabajo con Codex, el agente de OpenAI. El mecanismo es el mismo que en Claude Code: AGENTS.md en lugar de CLAUDE.md. 30 de septiembre: una revisión automática encontró que cinco requests de un solo cliente podían bloquear el login de todos los demás. Lo corregimos y quedó un test y un ADR. Clic. Esa misma tarde, una limpieza de documentación borró la carpeta docs, con los ADRs adentro. Clic. Cuatro días después, en una sesión nueva, el agente me dijo: no encontré ADRs existentes. Amnesia total. Los restauramos desde git y agregué una regla: antes de terminar, revisa los ADRs. Clic. Una semana después migré toda la base de datos a PlanetScale. Codex leyó el ADR y la regla de rate limiting sobrevivió intacta. Clic. La memoria no estaba en el agente: el agente la había perdido. Estaba en el repo.',
   '¿Y dónde guardo cada cosa? Una regla simple. Si Claude debe saberlo siempre: CLAUDE.md. Si es un procedimiento que se usa a veces: una skill, que se carga solo cuando hace falta. Si no puede fallar nunca: un hook, porque es determinista y no depende de que el modelo se acuerde. Y si necesita su propio contexto: un subagente. Lo importante: todo vive en git, así que se revisa en un PR como cualquier otro código. Es memoria del equipo, no de una persona.',
-  'Una advertencia honesta: si cada sesión agrega algo a CLAUDE.md, tarde o temprano se vuelve enorme, ocupa contexto en cada sesión y lo importante se pierde entre lo que ya no aplica. Así que el propio flujo de compound tiene que ser automantenible. Cada quien encontrará su forma, pero la idea es la misma: medir el tamaño, podar lo duplicado u obsoleto, y mover el detalle a skills que se cargan solo cuando hacen falta. Idealmente, la misma skill de compound lo revisa antes de agregar algo nuevo.',
-  '[~11:00] Si se van a llevar una sola cosa de esta charla, que sea esto. Tómenle foto. Al final de cada sesión, antes de escribir exit, pídanle esto a Claude. Es la fase compound en dos líneas. Y cuando lo hayan hecho tres veces, conviértanlo en una skill propia que se llame compound, para que el hábito no dependa de que se acuerden.',
+  'Una advertencia: si cada sesión agrega algo, CLAUDE.md crece hasta volverse ruido que ocupa contexto en cada sesión. Así que compound también se mantiene: mide el tamaño, poda lo duplicado u obsoleto y mueve el detalle a skills. Idealmente, la misma skill de compound lo revisa antes de agregar algo nuevo. [Si vas tarde, pasa este slide rápido.]',
+  '[~11:45] Si se van a llevar una sola cosa de esta charla, que sea esto. Tómenle foto. Al final de cada sesión, antes de escribir exit, pídanle esto a Claude. Es la fase compound en dos líneas. Y cuando lo hayan hecho tres veces, conviértanlo en una skill propia que se llame compound, para que el hábito no dependa de que se acuerden.',
   'No hay que adoptar todo de golpe. Un escalón por día. Lunes: corran init y tengan su primer CLAUDE.md. Martes: plan mode para todo lo que no sea trivial. Miércoles: code review antes de cada PR. Jueves: su primera skill, del procedimiento que más repiten. Viernes: un hook para la regla que más se rompe. Fíjense que cada columna es más alta que la anterior: así se ve el interés compuesto.',
-  '[~13:00] ¿Se acuerdan de la espiral de la portada? Así se ve después de muchas sesiones que sí dejaron algo. El ROI real de trabajar con agentes no es escribir más código: es construir sistemas que suban la vara después de cada feature. Menos contexto desechable, menor bus factor y un mejor siguiente cambio.',
-  '[~14:00 · luego 5 min de Q&A con este slide arriba] Gracias. Aquí están la presentación, mi LinkedIn y mi X, donde estoy como ivanovishado. Dejo este slide arriba durante las preguntas para que todos alcancen a escanear. El concepto de Compound Engineering viene del equipo de Every; si quieren un flujo ya empaquetado, su plugin es un buen punto de partida. Pero todo lo que vimos hoy funciona con Claude Code tal como viene. Abrimos preguntas.',
+  '[~13:30] ¿Se acuerdan de la espiral de la portada? Así se ve después de muchas sesiones que sí dejaron algo. El ROI real de trabajar con agentes no es escribir más código: es construir sistemas que suban la vara después de cada feature. Menos contexto desechable, menor bus factor y un mejor siguiente cambio.',
+  '[~14:15 · luego 5 min de Q&A con este slide arriba] Gracias. Aquí están la presentación, mi LinkedIn y mi X, donde estoy como ivanovishado. Dejo este slide arriba durante las preguntas para que todos alcancen a escanear. El concepto de Compound Engineering viene del equipo de Every; si quieren un flujo ya empaquetado, su plugin es un buen punto de partida. Pero todo lo que vimos hoy funciona con Claude Code tal como viene. Abrimos preguntas.',
 ];
 
 export const meta: SlideMeta = {
@@ -3612,6 +4020,7 @@ export default [
   WorkSlide,
   ReviewSlide,
   CompoundSlide,
+  RealCaseSlide,
   LayersSlide,
   PruneSlide,
   StealSlide,
