@@ -3301,7 +3301,7 @@ const OutroSlide: Page = () => (
       >
         <img
           src={imgQrSlides}
-          alt={'Código QR de la presentación en ivanovishado.dev'}
+          alt={'Código QR de la presentación en talks.ivanovishado.dev'}
           style={{ width: '470px', height: '470px', objectFit: 'contain' }}
         />
         <p
