@@ -34,6 +34,7 @@ jobs:
       - run: node scripts/inject-github-link.mjs
       - name: Add SPA fallback
         run: cp dist/index.html dist/404.html
+      - run: node scripts/generate-seo-pages.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
