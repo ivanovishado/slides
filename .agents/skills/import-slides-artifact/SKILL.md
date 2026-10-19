@@ -1,6 +1,6 @@
 ---
 name: import-slides-artifact
-description: Port a Claude Slides artifact (a claude.ai/artifact/... or claude.ai/code/artifact/... deck made from the Slides type) into this open-slide repo as slides/<id>/index.tsx so it can be deployed to ivanovishado.dev with pixel-faithful visuals. Use whenever the user wants to move, copy, publish, deploy, self-host, or "pasar" a Claude artifact deck to their repo or domain, wants a deck viewable without a Claude account, or asks to keep the artifact and the site in sync — even if they don't say "import" or "artifact".
+description: Port a Claude Slides artifact (a claude.ai/artifact/... or claude.ai/code/artifact/... deck made from the Slides type) into this open-slide repo as slides/<id>/index.tsx so it can be deployed to talks.ivanovishado.dev with pixel-faithful visuals. Use whenever the user wants to move, copy, publish, deploy, self-host, or "pasar" a Claude artifact deck to their repo or domain, wants a deck viewable without a Claude account, or asks to keep the artifact and the site in sync — even if they don't say "import" or "artifact".
 ---
 
 # Import a Claude Slides artifact into open-slide
@@ -19,7 +19,7 @@ Put the export in the scratchpad, not in the repo. A raw export inside the repo 
 
 ## 2. Convert
 
-Pick a short kebab-case id; it becomes the URL `https://www.ivanovishado.dev/slides/s/<id>`. Ask the user if it isn't obvious. Optionally write a names file so assets get readable filenames:
+Pick a short kebab-case id; it becomes the URL `https://talks.ivanovishado.dev/s/<id>`. Ask the user if it isn't obvious. Optionally write a names file so assets get readable filenames:
 
 ```json
 {"951cf575...": "speaker.jpeg", "f8bf4e26...": "bus-factor.png"}
@@ -53,17 +53,17 @@ Knowing this helps when you have to fix something by hand:
 The conversion can be right on paper and wrong on screen, so look at every slide.
 
 - Start the dev server through `.claude/launch.json`. The desktop launcher may not have `node` on PATH, and `open-slide dev` can stop at an interactive skills-drift prompt. Point `runtimeExecutable` at the absolute `node` binary (`which node`) and run `node_modules/@open-slide/core/dist/cli/bin.js dev --port <p> --no-skills-check`. If `preview_start` still can't reach it, start that command in the background from Bash and add an attach-only configuration (`"url": "http://localhost:<p>"`).
-- Open `/slides/s/<id>`, set the viewport to 1920×1080, press `f` for present mode, and step through with ArrowRight. Slides with build-ins need one extra press. Wait about a second after each key, because a press during a transition can skip a slide.
+- Open `/s/<id>`, set the viewport to 1920×1080, press `f` for present mode, and step through with ArrowRight. Slides with build-ins need one extra press. Wait about a second after each key, because a press during a transition can skip a slide.
 - Compare against the artifact. Check text that disappeared (paint order), arrows, connectors, embeds and QR codes. Reset the viewport when you're done.
 
 ## 4. QR codes
 
-The talk's outro usually has a QR code for "the presentation". Once the deck lives on the domain, point that code at `https://www.ivanovishado.dev/slides/s/<id>`. Generate it in a throwaway venv in the scratchpad, since the repo allows no new dependencies:
+The talk's outro usually has a QR code for "the presentation". Once the deck lives on the domain, point that code at `https://talks.ivanovishado.dev/s/<id>`. Generate it in a throwaway venv in the scratchpad, since the repo allows no new dependencies:
 
 ```bash
 python3 -m venv <scratch>/qrenv && <scratch>/qrenv/bin/pip install -q segno
 <scratch>/qrenv/bin/python -I -c "import segno,sys; segno.make(sys.argv[1], error='m').save(sys.argv[2], scale=30, border=2)" \
-  https://www.ivanovishado.dev/slides/s/<id> slides/<id>/assets/<qr-file>.png
+  https://talks.ivanovishado.dev/s/<id> slides/<id>/assets/<qr-file>.png
 ```
 
 Look at the PNG before using it. Also offer to swap the same QR into the artifact (upload it as an asset, then edit the outro slide's `src`), so the artifact and the site stay the same.
